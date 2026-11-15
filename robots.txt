@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://supermaxlol.github.io/Lean-verified-equilibrium-existence-for-interest-free-ownership-economies/sitemap.xml
