@@ -1,0 +1,4 @@
+'WilsonMany.wilson_converse_all' depends on axioms: [propext, Classical.choice, Quot.sound]
+'WilsonMany.common_cautiousness' depends on axioms: [propext, Classical.choice, Quot.sound]
+'WilsonMany.wilson_hara_all' depends on axioms: [propext, Classical.choice, Quot.sound]
+'WilsonMany.tolerance_sum' depends on axioms: [propext, Classical.choice, Quot.sound]

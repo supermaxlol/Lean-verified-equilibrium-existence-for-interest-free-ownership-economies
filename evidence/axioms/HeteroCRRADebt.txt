@@ -1,0 +1,7 @@
+'HeteroCRRADebt.euler_necessary' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeteroCRRADebt.crra_euler_zero_bond' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeteroCRRADebt.cheb_strict' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeteroCRRADebt.tilted_strict' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeteroCRRADebt.hetero_crra_debt_traded' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeteroCRRADebt.issuer_and_holder' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeteroCRRADebt.hetero_crra_issuer_holder' depends on axioms: [propext, Classical.choice, Quot.sound]

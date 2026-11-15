@@ -1,0 +1,8 @@
+'Screening.debt_borrower_ge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Screening.debt_lender_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Screening.safe_exits_first' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Screening.sw_example' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Screening.ps_payoff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Screening.ps_no_selection' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Screening.ps_pool_return' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Screening.ps_pool_mono' depends on axioms: [propext, Classical.choice, Quot.sound]

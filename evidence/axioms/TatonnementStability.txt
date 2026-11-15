@@ -1,0 +1,6 @@
+'TatonnementStability.warp_value_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TatonnementStability.warp_value_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TatonnementStability.lyapunov_value' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TatonnementStability.lyapunov_deriv' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TatonnementStability.distance_deriv_neg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TatonnementStability.tatonnement_distance_antitone' depends on axioms: [propext, Classical.choice, Quot.sound]

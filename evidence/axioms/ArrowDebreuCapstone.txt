@@ -1,0 +1,7 @@
+'ArrowDebreu.retr_continuous' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ArrowDebreu.profit_continuous' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ArrowDebreu.budgetW_lhc' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ArrowDebreu.Economy.dem_closed' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ArrowDebreu.Economy.N_closed' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ArrowDebreu.Economy.N_walras' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ArrowDebreu.Economy.equilibrium_exists' depends on axioms: [propext, Classical.choice, Quot.sound]

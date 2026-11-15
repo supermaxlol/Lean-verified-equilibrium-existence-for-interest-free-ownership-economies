@@ -1,0 +1,4 @@
+'PerturbedWeight.perturb_afriat' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PerturbedWeight.perturb_afriat_lip' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PerturbedWeight.lam_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PerturbedWeight.debreu_delta' depends on axioms: [propext, Classical.choice, Quot.sound]

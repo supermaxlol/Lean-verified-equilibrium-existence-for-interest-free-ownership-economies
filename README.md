@@ -9,9 +9,9 @@ The connected applications cover proportional ownership certificates, funded
 mutual protection, supplied compute enterprises, dated operating affordability
 and a guarded primary-subscription/escrow lifecycle.
 
-The November 2026 update contains **90 Lean modules** and **918 recorded
+The 15 November 2026 update contains **195 Lean modules** and **2,113 recorded
 declaration-audit endpoints** across the foundation and accepted extension chain.
-Endpoints include supporting lemmas and controls; they are not 918 independent
+Endpoints include supporting lemmas and controls; they are not independent
 discoveries. All retained logs are clean and use only standard foundations
 (`propext`, `Classical.choice`, `Quot.sound`). Proof sources and runtime artifacts
 marked source-identical retain their accepted bytes; receipt sanitization and
@@ -29,6 +29,14 @@ Reading it in two layers: this page + §Z is the aha (deployable in 2 minutes: t
 # One maths for the last 50 and the next 50.
 
 ## Solved the 50-year-old Islamic finance maths problem — and the maths problem we will face in the next 50 years
+
+As automation lets capital produce more of the output and labor less of it, the economic question shifts from "what is my wage?" to "what do I own?" Economists have seen this coming — the problem is often posed as whoever owns the machines ends up owning the output — but the ownership answer has always carried an unproven hole: no one had shown that an economy in which people are sustained by ownership of production instead of wages can actually clear — positive prices, budgets that balance, markets that settle — and do so with no interest-rate benchmark anchoring it.
+
+That coherence result is the piece that was missing, and it is what this work supplies, machine-checked: for a defined economy built on state-contingent ownership claims, a competitive equilibrium exists, with binding budgets, exact clearing, and no risk-free lending rate. It does not forecast automation or claim any policy is just or achievable — it proves that the economy such a world would require is mathematically coherent rather than wishful. Interest-free finance is one instance; the result is secular and general.
+
+**What the results reveal, in plain language: [What the maths shows](docs/WHAT_THE_MATHS_SHOWS.md).**
+
+**Every limitation is stated: see [What this contribution is — and is not](#what-this-contribution-is--and-is-not) and [Scope — what this does and does not claim](#scope--what-this-does-and-does-not-claim).**
 
 ## Why this matters — the missing piece
 
@@ -128,8 +136,8 @@ Interest-free finance is one instance. The result is secular and general.
   **Engines.** Set-valued Gale–Nikaido–Debreu. General Berge maximum theorem.
   Price extraction / separating price. Production-economy structure.
   Continuous firm supply over a production set.
-  Full Mantel surjectivity and genuinely sequential incomplete-market equilibrium remain open; see
-  [the frontier note](docs/GE_FRONTIER_2026-11-06.md).
+  Continuous Mantel surjectivity with Debreu's own weights and genuinely sequential incomplete-market
+  equilibrium remain open; see [the frontier note](docs/GE_FRONTIER_2026-11-06.md) and Stages 250–355 below.
 
 The economic and pure executable core is **proved**; the database adapter is
 **tested under explicit storage/runtime assumptions**. Truthful physical evidence,
@@ -137,9 +145,81 @@ authentication, real custody, legal title and demonstrated social outcomes are
 not supplied by these results. See the [connected example](docs/CONNECTED_DEMO.md),
 [implementation contract](runtime/README.md) and [roadmap](docs/ROADMAP.md).
 
+## New in this release: Stages 250–355
+
+105 further modules, 1195 further audited declarations. Each module was
+compiled on its own against the pinned Mathlib, and its clean axiom log is retained. Per-stage
+statements and limits are in [`docs/stages/`](docs/stages/).
+
+- **Classical machinery, from primitives (Stages 252–261, 278).**
+  Cobb–Douglas demand derived from utility maximisation.
+  Convex-valued production equilibrium. Debreu's decomposition of excess demand.
+  The maximum theorem for supply and demand correspondences.
+  Blackwell contraction and the Bellman equation.
+  Stability and convergence of price adjustment under the weak axiom.
+  Arrow–Debreu existence with production and several firms, with exact clearing.
+- **Ownership is the equilibrium (Stages 250–252, 265–285, 288, 291, 295, 351–352, 354).**
+  With log, homothetic or any CRRA utility, every interior equilibrium is a division of ownership.
+  The ownership state prices are the only supporting prices.
+  Every efficient interior allocation is a division of ownership.
+  A fixed claim layered on ownership is strictly costly.
+  Share claims are solvent in every state; fixed claims are not.
+  The shadow riskless return is below the expected return on ownership.
+  Heterogeneous risk attitudes, CARA risk tolerance and heterogeneous beliefs are covered.
+  Wilson's converse: linear sharing forces common cautiousness (also for `n` households, Stage 294).
+  Incomplete markets with only equity and debt (Stage 285). With different CRRA coefficients the fixed
+  claim is traded in every interior equilibrium: someone issues it and someone holds it (Stage 354).
+  Boundary allocations: non-negative optima are interior, for log and every power utility (288, 291, 295).
+  Stage 250's ownership-neutral prices now follow from utility maximisation (Stage 352).
+  With common Cobb–Douglas preferences the equilibrium is unique and globally stable under price
+  adjustment, whatever the ownership distribution (Stage 351).
+- **Dynamics (Stages 253, 263–264, 277, 286, 289, 293, 297–299).**
+  Lucas-tree ownership equilibria with log and general CRRA utility, many assets, short sales and debt.
+  Issuance dynamics as a trading equilibrium, including infinite-horizon savers.
+  Saving rules are optimal against whole plans. Transversality is derived from position limits.
+  The CRRA optimum in closed form.
+- **Interest-free contracting (Stages 301–322, 327, 350).**
+  Costly state verification. Random audits (Mookherjee–Png), with a bounded penalty.
+  The Border–Sobel audit schedule. Moral hazard, including limited liability.
+  Stiglitz–Weiss screening without interest. Selection on the mean under profit sharing.
+  Pooling (takaful), its limit, and correlated risks. Exponential tail bounds for the buffer.
+  A lender of last resort with a haircut in place of a penalty rate.
+  Every Arrow–Debreu equilibrium can be traded with interest-free contracts (Stage 320).
+  Innes's theorem: debt is optimal under MLRP (Stage 327). It marks where debt wins, and is reported, not hidden.
+  Shape and interest are separable: holding the debt shape fixed, a premium above the zero-return face
+  buys no surplus and no effort incentive; it is a transfer less verification cost (Stage 350).
+- **Sonnenschein–Mantel–Debreu (Stages 262, 287, 292, 296, 300, 302, 306–307, 312, 316, 323–326, 328–349, 353, 355).**
+  - Finite price sets: **proved**. Continuous, strictly concave utilities with unique demand, with endowments
+    (Stages 296, 300, 326, 329).
+  - The revealed-preference Mantel utility is upper semicontinuous but not lower semicontinuous, on any
+    compact price set (Stages 316, 324, 328). The endowment rescaling of Stage 323 is necessary (Stage 325).
+  - Continuum of prices: Afriat's construction (Stage 330). Unique demand for Debreu's constant-weight
+    consumer (331) and for slowly varying weights (335).
+  - Debreu's weight `p_k`: reduced to a one-variable inequality (336), proved with an explicit constant (339),
+    rationalised with explicit Afriat numbers (344), with unique demand on rich price sets (347) and up to the
+    boundary of a closed cap (348). Boundary prices for slowly varying weights are resolved (341, 345).
+  - Debreu's weight `A p_k + Z_k`: the Afriat inequalities hold with a quantitative margin (346).
+    Assembled (353): a Walras excess demand that is bounded and **Lipschitz** on the cap is, at every
+    price of the cap, the sum of `n` optimal trades of continuous, concave, strictly monotone utilities.
+    Uniqueness of demand for this weight is not proved.
+  - Exact single-price decomposition with the necessary endowment floor (338). Debreu's own decomposition
+    overshoots that floor (340).
+  - Grid route: optimal trades are stable under locally uniform limits (343). Arzelà–Ascoli compactness
+    supplies a limit utility that rationalises the trades at every price, **assuming** a uniform Lipschitz
+    bound for the grid utilities (349).
+  - That uniform bound exists only when the excess demand is already Lipschitz: a pointwise limit of
+    `L`-Lipschitz maps is `L`-Lipschitz, and along any approximation of a non-Lipschitz demand the
+    stage-353 Afriat scale degenerates (355). This closes that route; it does not show Mantel fails.
+
+**Still open after this release.** Continuous Mantel/Debreu for excess demands that are continuous but
+not Lipschitz, with Debreu's own weights. The Lipschitz case is done on the cap (353), and the uniform-
+Lipschitz route to the rest is closed (355); a different construction is needed. It is not a failure of
+revealed preference. See
+[`docs/CONTINUOUS_MANTEL_OBSTRUCTION.md`](docs/CONTINUOUS_MANTEL_OBSTRUCTION.md).
+
 ## What this contribution is — and is not
 
-This repository is a **sealed 90-module Lean formalization**, SHA-audited and kept to
+This repository is a **sealed 195-module Lean formalization**, SHA-audited and kept to
 standard foundations, rare in this space because it separates two questions the
 literature usually blurs:
 
@@ -201,8 +281,8 @@ first-ever priority conclusion is certified by the source/axiom audit.
 
 ## Original foundations module: what is proven
 
-The original `GEOverlap.lean` retains its 25 headline theorem audits. The new
-89 modules in `formal/` extend it; the original source and historical seal are
+The original `GEOverlap.lean` retains its 25 headline theorem audits. The other
+194 modules in `formal/` extend it; the original source and historical seal are
 preserved unchanged.
 
 **The machinery**
@@ -268,13 +348,13 @@ For precision (and because overclaiming helps no one):
   class needs no supplied lending benchmark; narrower risky controls and trading
   restrictions retain their own assumptions. Discount weights, time preference
   and potentially implied safe returns are not abolished.
-- Still open: the full Sonnenschein–Mantel–Debreu *surjectivity* result (realizing
-  an arbitrary continuous Walras `z` as the aggregate of rational households; the
-  non-uniqueness *upshot* is witnessed above, and both formalizable directions —
-  function-level realizability and the rational-demand aggregate excess demand —
-  are machine-checked in Stages 233/239, but the multi-household ray construction
-  is a separate, genuinely hard program). *Incomplete-market* (GEI) sequential
-  equilibrium also remains open. Decreasing-returns production with profit-share
+- Still open: continuous Sonnenschein–Mantel–Debreu *surjectivity* with Debreu's
+  own weights on the whole price cap `S_ε`. Finite price sets are proved (Stages
+  296–329). The continuum is proved for constant and slowly varying weights (Stages
+  330–335) and in part for the weight `p_k` (Stages 336–349). The remaining input is a
+  uniform bound on Afriat numbers or on grid utilities, not a failure of revealed
+  preference. *Incomplete-market* (GEI) sequential
+  equilibrium also remains open in general; Stage 285 covers only equity and debt. Decreasing-returns production with profit-share
   distribution and a money object are now closed in Stages 232/236/238/248;
   *monetary* time value beyond the money-object premium needs further modeling.
 
@@ -300,7 +380,8 @@ lake build                      # build foundation and extension libraries
 - `GEOverlap.lean` — the full development.
 - `AXIOM_AUDIT.txt` — the axiom audit (every theorem: `[propext, Classical.choice, Quot.sound]`).
 - `SEAL_GND.json` — historical foundations snapshot, not the latest gap ledger.
-- `formal/` — accepted productive-ownership extension sources.
+- `formal/` — accepted productive-ownership extension sources (Stages 183–249 and 250–355).
+- `docs/stages/` — statement and limits of each stage from 250 on.
 - `evidence/verification-manifest.json` — portable module/stage/hash inventory.
 - `evidence/axioms/` — clean retained extension compiler/axiom logs.
 - `tests/primary_escrow_controls.py` — independent exact specification controls,

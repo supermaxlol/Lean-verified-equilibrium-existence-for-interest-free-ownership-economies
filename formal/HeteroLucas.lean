@@ -1,0 +1,542 @@
+import Mathlib
+
+/-!
+Stage 299: heterogeneous Lucas economy with debt.
+
+Households differ in their tree share `θ i` (all share CRRA `0 < p < 1`).  Besides the tree,
+any number of other assets (e.g. one-period debt) trade in zero net supply.  Prices are set by
+the Euler equation at aggregate consumption.  Each household holding its share and not
+borrowing is optimal among all bounded plans (position limits, stage 297), and markets clear.
+-/
+
+set_option linter.unusedSectionVars false
+
+noncomputable section
+
+open Finset BigOperators Filter Topology
+
+namespace HeteroLucas
+
+theorem bernoulli_neg (p t : ℝ) (hp : p < 0) (ht : 0 < t) : 1 + p * (t - 1) ≤ t ^ p := by
+  rw [Real.rpow_def_of_pos ht]
+  have h1 := Real.add_one_le_exp (Real.log t * p)
+  have h2 := Real.log_le_sub_one_of_pos ht
+  have h3 : p * (t - 1) ≤ p * Real.log t := mul_le_mul_of_nonpos_left h2 hp.le
+  linarith
+
+
+/-- Bernoulli from above, exponent between zero and one. -/
+theorem bernoulli_pos (p t : ℝ) (hp : 0 < p) (hp1 : p < 1) (ht : 0 < t) :
+    t ^ p ≤ 1 + p * (t - 1) := by
+  have h := Real.geom_mean_le_arith_mean2_weighted hp.le (by linarith : (0 : ℝ) ≤ 1 - p)
+    ht.le zero_le_one (by ring : p + (1 - p) = 1)
+  rw [Real.one_rpow, mul_one] at h
+  linarith
+
+/-- **Supergradient inequality for CRRA utility.** -/
+theorem crra_supergradient (p a b : ℝ) (hp1 : p < 1) (hp0 : p ≠ 0) (ha : 0 < a) (hb : 0 < b) :
+    1 / p * a ^ p ≤ 1 / p * b ^ p + b ^ (p - 1) * (a - b) := by
+  have ht : 0 < a / b := div_pos ha hb
+  have hB : 0 < b ^ p := Real.rpow_pos_of_pos hb p
+  have hA : a ^ p = (a / b) ^ p * b ^ p := by
+    rw [← Real.mul_rpow ht.le hb.le, div_mul_cancel₀ a hb.ne']
+  have hm : b ^ (p - 1) * (a - b) = b ^ p * (a / b - 1) := by
+    rw [Real.rpow_sub_one hb.ne']
+    field_simp
+  have hpc : p * (1 / p) = 1 := mul_one_div_cancel hp0
+  have hkey : (a / b) ^ p * (1 / p) ≤ 1 / p + (a / b - 1) := by
+    rcases lt_or_gt_of_ne hp0 with hneg | hpos
+    · have hk := bernoulli_neg p (a / b) hneg ht
+      have hc : 1 / p < 0 := one_div_neg.2 hneg
+      have h := mul_nonneg_of_nonpos_of_nonpos hc.le (sub_nonpos.2 hk)
+      have e : 1 / p * (1 + p * (a / b - 1) - (a / b) ^ p)
+          = 1 / p + (p * (1 / p)) * (a / b - 1) - (a / b) ^ p * (1 / p) := by ring
+      rw [e, hpc, one_mul] at h
+      linarith
+    · have hk := bernoulli_pos p (a / b) hpos hp1 ht
+      have hc : 0 < 1 / p := one_div_pos.2 hpos
+      have h := mul_nonneg hc.le (sub_nonneg.2 hk)
+      have e : 1 / p * (1 + p * (a / b - 1) - (a / b) ^ p)
+          = 1 / p + (p * (1 / p)) * (a / b - 1) - (a / b) ^ p * (1 / p) := by ring
+      rw [e, hpc, one_mul] at h
+      linarith
+  have h2 := mul_le_mul_of_nonneg_left hkey hB.le
+  rw [hA, hm]
+  linarith
+
+variable {X : Type*} [Fintype X]
+
+theorem blackwell (T : (X → ℝ) → (X → ℝ)) (β : ℝ) (hβ : 0 ≤ β)
+    (hmono : ∀ v w : X → ℝ, (∀ x, v x ≤ w x) → ∀ x, T v x ≤ T w x)
+    (hdisc : ∀ (v : X → ℝ) (c : ℝ), 0 ≤ c → ∀ x, T (fun y => v y + c) x ≤ T v x + β * c)
+    (v w : X → ℝ) : dist (T v) (T w) ≤ β * dist v w := by
+  have key : ∀ v w : X → ℝ, ∀ x, T v x - T w x ≤ β * dist v w := by
+    intro v w x
+    have h1 : ∀ y, v y ≤ w y + dist v w := by
+      intro y
+      have h := dist_le_pi_dist v w y
+      rw [Real.dist_eq] at h
+      have h' := le_abs_self (v y - w y)
+      linarith
+    have h2 := hmono v (fun y => w y + dist v w) h1 x
+    have h3 := hdisc w (dist v w) dist_nonneg x
+    linarith
+  rw [dist_pi_le_iff (mul_nonneg hβ dist_nonneg)]
+  intro x
+  rw [Real.dist_eq, abs_le]
+  have h1 := key v w x
+  have h2 := key w v x
+  rw [dist_comm w v] at h2
+  constructor <;> linarith
+
+/-- **Unique fixed point and convergence of value iteration.** -/
+theorem blackwell_fixed_point (T : (X → ℝ) → (X → ℝ)) (β : ℝ) (hβ : 0 ≤ β) (hβ1 : β < 1)
+    (hmono : ∀ v w : X → ℝ, (∀ x, v x ≤ w x) → ∀ x, T v x ≤ T w x)
+    (hdisc : ∀ (v : X → ℝ) (c : ℝ), 0 ≤ c → ∀ x, T (fun y => v y + c) x ≤ T v x + β * c) :
+    ∃ V : X → ℝ, T V = V ∧ (∀ W, T W = W → W = V) ∧
+      ∀ v0, Tendsto (fun n => T^[n] v0) atTop (𝓝 V) := by
+  have hK : (⟨β, hβ⟩ : NNReal) < 1 := show β < ((1 : NNReal) : ℝ) by rw [NNReal.coe_one]; exact hβ1
+  have hc : ContractingWith ⟨β, hβ⟩ T :=
+    ⟨hK, LipschitzWith.of_dist_le_mul (fun v w => blackwell T β hβ hmono hdisc v w)⟩
+  exact ⟨ContractingWith.fixedPoint T hc, hc.fixedPoint_isFixedPt,
+    fun W hW => hc.fixedPoint_unique hW, fun v0 => hc.tendsto_iterate_fixedPoint v0⟩
+
+variable {S : Type*} [Fintype S]
+
+/-- The operator `w ↦ f + β Π w`. -/
+def linOp (π : S → S → ℝ) (β : ℝ) (f w : S → ℝ) : S → ℝ :=
+  fun s => f s + β * ∑ s', π s s' * w s'
+
+/-- **The linear value equation has exactly one solution.** -/
+theorem lin_fixed (π : S → S → ℝ) (β : ℝ) (f : S → ℝ) (hπ : ∀ s s', 0 ≤ π s s')
+    (hπ1 : ∀ s, ∑ s', π s s' = 1) (hβ : 0 ≤ β) (hβ1 : β < 1) :
+    ∃ w : S → ℝ, linOp π β f w = w ∧ ∀ w', linOp π β f w' = w' → w' = w := by
+  have hmono : ∀ v w : S → ℝ, (∀ x, v x ≤ w x) → ∀ x, linOp π β f v x ≤ linOp π β f w x := by
+    intro v w hvw s
+    have h1 := Finset.sum_le_sum
+      (fun s' (_ : s' ∈ (univ : Finset S)) => mul_le_mul_of_nonneg_left (hvw s') (hπ s s'))
+    have h2 := mul_le_mul_of_nonneg_left h1 hβ
+    simp only [linOp]
+    linarith
+  have hdisc : ∀ (v : S → ℝ) (c : ℝ), 0 ≤ c →
+      ∀ x, linOp π β f (fun y => v y + c) x ≤ linOp π β f v x + β * c := by
+    intro v c _ s
+    have e : ∑ s', π s s' * (v s' + c) = ∑ s', π s s' * v s' + c := by
+      simp only [mul_add, Finset.sum_add_distrib, ← Finset.sum_mul, hπ1 s, one_mul]
+    simp only [linOp]
+    rw [e]
+    apply le_of_eq
+    ring
+  obtain ⟨V, hV, hu, -⟩ := blackwell_fixed_point (linOp π β f) β hβ hβ1 hmono hdisc
+  exact ⟨V, hV, hu⟩
+
+/-! ### Supergradients for the instances -/
+
+theorem power_sg_nonneg (p c d : ℝ) (hp0 : 0 < p) (hp1 : p < 1) (hc : 0 ≤ c) (hd : 0 < d) :
+    1 / p * c ^ p ≤ 1 / p * d ^ p + d ^ (p - 1) * (c - d) := by
+  rcases hc.eq_or_lt with h | h
+  · subst h
+    rw [Real.zero_rpow hp0.ne', mul_zero, zero_sub, Real.rpow_sub_one hd.ne']
+    have hD : 0 < d ^ p := Real.rpow_pos_of_pos hd p
+    have e : d ^ p / d * -d = - d ^ p := by field_simp
+    rw [e]
+    have h1 : 1 ≤ 1 / p := by rw [le_div_iff₀ hp0]; linarith
+    nlinarith
+  · exact crra_supergradient p c d hp1 hp0.ne' h hd
+
+theorem log_sg (c d : ℝ) (hc : 0 < c) (hd : 0 < d) :
+    Real.log c ≤ Real.log d + 1 / d * (c - d) := by
+  have h1 := Real.log_le_sub_one_of_pos (div_pos hc hd)
+  rw [Real.log_div hc.ne' hd.ne'] at h1
+  have e : 1 / d * (c - d) = c / d - 1 := by field_simp
+  rw [e]
+  linarith
+
+/-! ### Prices exist for every asset -/
+
+theorem asset_price_exists (π : S → S → ℝ) (β : ℝ) (mu dv : S → ℝ) (hπ : ∀ s s', 0 ≤ π s s')
+    (hπ1 : ∀ s, ∑ s', π s s' = 1) (hβ : 0 ≤ β) (hβ1 : β < 1) (hmu : ∀ s, 0 < mu s) :
+    ∃ P : S → ℝ, ∀ s, mu s * P s = β * ∑ s', π s s' * (mu s' * (P s' + dv s')) := by
+  obtain ⟨z, hz, -⟩ := lin_fixed π β (fun s => β * ∑ s', π s s' * (mu s' * dv s')) hπ hπ1 hβ hβ1
+  refine ⟨fun s => z s / mu s, fun s => ?_⟩
+  have hzs := congrFun hz s
+  simp only [linOp] at hzs
+  have key : ∀ s', mu s' * (z s' / mu s' + dv s') = z s' + mu s' * dv s' := fun s' => by
+    rw [mul_add, mul_div_assoc', mul_div_cancel_left₀ _ (hmu s').ne']
+  simp_rw [key]
+  rw [mul_div_assoc', mul_div_cancel_left₀ _ (hmu s).ne']
+  have e : ∑ s', π s s' * (z s' + mu s' * dv s') =
+      ∑ s', π s s' * z s' + ∑ s', π s s' * (mu s' * dv s') := by
+    rw [← Finset.sum_add_distrib]
+    exact Finset.sum_congr rfl fun s' _ => by ring
+  rw [e]
+  linarith
+
+/-! ### Plans over histories -/
+
+variable {J : Type*} [Fintype J]
+
+/-- Holdings carried into a node: the initial portfolio at the root, otherwise the portfolio
+chosen at the parent node. -/
+def inc (x : S → List S → J → ℝ) (x0 : J → ℝ) : S → List S → J → ℝ
+  | _, [] => x0
+  | _, s :: h => x s h
+
+/-- Marginal value of holdings `y` in excess of the reference portfolio `e`. -/
+def Fv (mu : S → ℝ) (P d : J → S → ℝ) (e : J → ℝ) (s : S) (y : J → ℝ) : ℝ :=
+  mu s * ∑ j, (y j - e j) * (P j s + d j s)
+
+/-- Discounted marginal-utility-weighted consumption gap over `n` periods. -/
+def gap (π : S → S → ℝ) (β : ℝ) (mu Y : S → ℝ) (c : S → List S → ℝ) :
+    ℕ → S → List S → ℝ
+  | 0, _, _ => 0
+  | n + 1, s, h => mu s * (c s h - Y s) + β * ∑ s', π s s' * gap π β mu Y c n s' (s :: h)
+
+/-- Plan utility minus hold utility over `n` periods. -/
+def ugap (π : S → S → ℝ) (β : ℝ) (u : ℝ → ℝ) (Y : S → ℝ) (c : S → List S → ℝ) :
+    ℕ → S → List S → ℝ
+  | 0, _, _ => 0
+  | n + 1, s, h => (u (c s h) - u (Y s)) + β * ∑ s', π s s' * ugap π β u Y c n s' (s :: h)
+
+/-- The transversality term. -/
+def term (π : S → S → ℝ) (β : ℝ) (mu : S → ℝ) (P d : J → S → ℝ) (e : J → ℝ)
+    (x : S → List S → J → ℝ) (x0 : J → ℝ) : ℕ → S → List S → ℝ
+  | 0, s, h => Fv mu P d e s (inc x x0 s h)
+  | n + 1, s, h => β * ∑ s', π s s' * term π β mu P d e x x0 n s' (s :: h)
+
+theorem node_step (π : S → S → ℝ) (β : ℝ) (mu Y : S → ℝ) (P d : J → S → ℝ) (e : J → ℝ)
+    (c : S → List S → ℝ) (x : S → List S → J → ℝ) (x0 : J → ℝ) (hmu : ∀ s, 0 ≤ mu s)
+    (hE : ∀ j s, mu s * P j s = β * ∑ s', π s s' * (mu s' * (P j s' + d j s')))
+    (hhold : ∀ s, Y s + ∑ j, P j s * e j = ∑ j, e j * (P j s + d j s))
+    (hbud : ∀ s h, c s h + ∑ j, P j s * x s h j ≤ ∑ j, inc x x0 s h j * (P j s + d j s))
+    (s : S) (h : List S) :
+    mu s * (c s h - Y s) ≤
+      Fv mu P d e s (inc x x0 s h) - β * ∑ s', π s s' * Fv mu P d e s' (x s h) := by
+  have h1 : c s h - Y s + ∑ j, P j s * (x s h j - e j) ≤
+      ∑ j, (inc x x0 s h j - e j) * (P j s + d j s) := by
+    have a1 : ∑ j, P j s * (x s h j - e j) = ∑ j, P j s * x s h j - ∑ j, P j s * e j := by
+      rw [← Finset.sum_sub_distrib]
+      exact Finset.sum_congr rfl fun j _ => by ring
+    have a2 : ∑ j, (inc x x0 s h j - e j) * (P j s + d j s) =
+        ∑ j, inc x x0 s h j * (P j s + d j s) - ∑ j, e j * (P j s + d j s) := by
+      rw [← Finset.sum_sub_distrib]
+      exact Finset.sum_congr rfl fun j _ => by ring
+    rw [a1, a2]
+    linarith [hbud s h, hhold s]
+  have h2 := mul_le_mul_of_nonneg_left h1 (hmu s)
+  have e1 : mu s * ∑ j, P j s * (x s h j - e j) =
+      β * ∑ s', π s s' * Fv mu P d e s' (x s h) := by
+    unfold Fv
+    calc mu s * ∑ j, P j s * (x s h j - e j)
+        = ∑ j, (x s h j - e j) * (mu s * P j s) := by
+          rw [Finset.mul_sum]
+          exact Finset.sum_congr rfl fun j _ => by ring
+      _ = ∑ j, (x s h j - e j) * (β * ∑ s', π s s' * (mu s' * (P j s' + d j s'))) :=
+          Finset.sum_congr rfl fun j _ => by rw [hE j s]
+      _ = β * ∑ s', π s s' * (mu s' * ∑ j, (x s h j - e j) * (P j s' + d j s')) := by
+          simp only [Finset.mul_sum]
+          rw [Finset.sum_comm]
+          exact Finset.sum_congr rfl fun _ _ => Finset.sum_congr rfl fun _ _ => by ring
+  have e2 : mu s * (c s h - Y s + ∑ j, P j s * (x s h j - e j)) =
+      mu s * (c s h - Y s) + mu s * ∑ j, P j s * (x s h j - e j) := by ring
+  rw [e2, e1] at h2
+  show _ ≤ mu s * ∑ j, (inc x x0 s h j - e j) * (P j s + d j s) - _
+  linarith
+
+theorem gap_le (π : S → S → ℝ) (β : ℝ) (mu Y : S → ℝ) (P d : J → S → ℝ) (e : J → ℝ)
+    (c : S → List S → ℝ) (x : S → List S → J → ℝ) (x0 : J → ℝ)
+    (hπ : ∀ s s', 0 ≤ π s s') (hβ : 0 ≤ β) (hmu : ∀ s, 0 ≤ mu s)
+    (hE : ∀ j s, mu s * P j s = β * ∑ s', π s s' * (mu s' * (P j s' + d j s')))
+    (hhold : ∀ s, Y s + ∑ j, P j s * e j = ∑ j, e j * (P j s + d j s))
+    (hbud : ∀ s h, c s h + ∑ j, P j s * x s h j ≤ ∑ j, inc x x0 s h j * (P j s + d j s)) :
+    ∀ n s h, gap π β mu Y c n s h ≤
+      Fv mu P d e s (inc x x0 s h) - term π β mu P d e x x0 n s h := by
+  intro n
+  induction n with
+  | zero => intro s h; simp [gap, term]
+  | succ n ih =>
+    intro s h
+    have hs := node_step π β mu Y P d e c x x0 hmu hE hhold hbud s h
+    have h2 : β * ∑ s', π s s' * gap π β mu Y c n s' (s :: h) ≤
+        β * ∑ s', π s s' * (Fv mu P d e s' (x s h) - term π β mu P d e x x0 n s' (s :: h)) :=
+      mul_le_mul_of_nonneg_left (Finset.sum_le_sum fun s' _ =>
+        mul_le_mul_of_nonneg_left (ih s' (s :: h)) (hπ s s')) hβ
+    have h3 : β * ∑ s', π s s' * (Fv mu P d e s' (x s h) - term π β mu P d e x x0 n s' (s :: h))
+        = β * ∑ s', π s s' * Fv mu P d e s' (x s h) - term π β mu P d e x x0 (n + 1) s h := by
+      simp only [term, mul_sub, Finset.sum_sub_distrib]
+    simp only [gap]
+    linarith
+
+theorem ugap_le (π : S → S → ℝ) (β : ℝ) (u : ℝ → ℝ) (mu Y : S → ℝ) (c : S → List S → ℝ)
+    (hπ : ∀ s s', 0 ≤ π s s') (hβ : 0 ≤ β)
+    (hsg : ∀ s h, u (c s h) ≤ u (Y s) + mu s * (c s h - Y s)) :
+    ∀ n s h, ugap π β u Y c n s h ≤ gap π β mu Y c n s h := by
+  intro n
+  induction n with
+  | zero => intro s h; simp [ugap, gap]
+  | succ n ih =>
+    intro s h
+    have h2 := mul_le_mul_of_nonneg_left (Finset.sum_le_sum (s := Finset.univ) fun s' _ =>
+      mul_le_mul_of_nonneg_left (ih s' (s :: h)) (hπ s s')) hβ
+    simp only [ugap, gap]
+    linarith [hsg s h]
+
+/-- **Holding the tree beats every plan.**  Any finite set of assets priced by the Euler
+equation, any portfolios (short sales allowed), any consumption in the supergradient domain.
+Over `n` periods the plan's utility is at most the hold utility minus the transversality
+term; if that term vanishes, the plan is no better than holding the tree. -/
+theorem hold_beats_every_plan [DecidableEq J] (π : S → S → ℝ) (β : ℝ) (u : ℝ → ℝ)
+    (mu Y : S → ℝ) (P d : J → S → ℝ) (j0 : J) (c : S → List S → ℝ)
+    (x : S → List S → J → ℝ) (s0 : S)
+    (hπ : ∀ s s', 0 ≤ π s s') (hβ : 0 ≤ β) (hmu : ∀ s, 0 ≤ mu s)
+    (hE : ∀ j s, mu s * P j s = β * ∑ s', π s s' * (mu s' * (P j s' + d j s')))
+    (hd0 : ∀ s, d j0 s = Y s)
+    (hbud : ∀ s h, c s h + ∑ j, P j s * x s h j ≤
+      ∑ j, inc x (fun j => if j = j0 then 1 else 0) s h j * (P j s + d j s))
+    (hsg : ∀ s h, u (c s h) ≤ u (Y s) + mu s * (c s h - Y s)) :
+    (∀ n, ugap π β u Y c n s0 [] ≤
+        - term π β mu P d (fun j => if j = j0 then 1 else 0) x
+          (fun j => if j = j0 then 1 else 0) n s0 []) ∧
+    (∀ G, Tendsto (fun n => ugap π β u Y c n s0 []) atTop (𝓝 G) →
+      Tendsto (fun n => term π β mu P d (fun j => if j = j0 then 1 else 0) x
+        (fun j => if j = j0 then 1 else 0) n s0 []) atTop (𝓝 0) → G ≤ 0) := by
+  set e : J → ℝ := fun j => if j = j0 then 1 else 0 with he
+  have hhold : ∀ s, Y s + ∑ j, P j s * e j = ∑ j, e j * (P j s + d j s) := by
+    intro s
+    have a1 : ∑ j, P j s * e j = P j0 s := by simp [he]
+    have a2 : ∑ j, e j * (P j s + d j s) = P j0 s + d j0 s := by simp [he]
+    rw [a1, a2, hd0 s]
+    ring
+  have hF : Fv mu P d e s0 (inc x e s0 []) = 0 := by simp [Fv, inc]
+  have part1 : ∀ n, ugap π β u Y c n s0 [] ≤ - term π β mu P d e x e n s0 [] := by
+    intro n
+    have a := ugap_le π β u mu Y c hπ hβ hsg n s0 []
+    have b := gap_le π β mu Y P d e c x e hπ hβ hmu hE hhold hbud n s0 []
+    rw [hF] at b
+    linarith
+  refine ⟨part1, fun G hG hT => ?_⟩
+  have := le_of_tendsto_of_tendsto' hG hT.neg part1
+  simpa using this
+
+/-- Power felicity `c ^ p / p`, `0 < p < 1`: zero consumption and any short positions allowed. -/
+theorem power_plans [DecidableEq J] (π : S → S → ℝ) (β p : ℝ) (Y : S → ℝ) (P d : J → S → ℝ)
+    (j0 : J) (c : S → List S → ℝ) (x : S → List S → J → ℝ) (s0 : S)
+    (hπ : ∀ s s', 0 ≤ π s s') (hβ : 0 ≤ β) (hp0 : 0 < p) (hp1 : p < 1) (hY : ∀ s, 0 < Y s)
+    (hc : ∀ s h, 0 ≤ c s h)
+    (hE : ∀ j s, Y s ^ (p - 1) * P j s =
+      β * ∑ s', π s s' * (Y s' ^ (p - 1) * (P j s' + d j s')))
+    (hd0 : ∀ s, d j0 s = Y s)
+    (hbud : ∀ s h, c s h + ∑ j, P j s * x s h j ≤
+      ∑ j, inc x (fun j => if j = j0 then 1 else 0) s h j * (P j s + d j s)) :
+    ∀ n, ugap π β (fun c => 1 / p * c ^ p) Y c n s0 [] ≤
+        - term π β (fun s => Y s ^ (p - 1)) P d (fun j => if j = j0 then 1 else 0) x
+          (fun j => if j = j0 then 1 else 0) n s0 [] :=
+  (hold_beats_every_plan π β (fun c => 1 / p * c ^ p) (fun s => Y s ^ (p - 1)) Y P d j0 c x s0
+    hπ hβ (fun s => (Real.rpow_pos_of_pos (hY s) _).le) hE hd0 hbud
+    (fun s h => power_sg_nonneg p (c s h) (Y s) hp0 hp1 (hc s h) (hY s))).1
+
+/-! ### Transversality from bounded positions -/
+
+theorem Fv_bound (mu : S → ℝ) (P d : J → S → ℝ) (e : J → ℝ) (B : ℝ) :
+    ∃ K, ∀ s (y : J → ℝ), (∀ j, |y j| ≤ B) → |Fv mu P d e s y| ≤ K := by
+  refine ⟨∑ s, |mu s| * ∑ j, (|B| + |e j|) * |P j s + d j s|, fun s y hy => ?_⟩
+  have h1 : |∑ j, (y j - e j) * (P j s + d j s)| ≤ ∑ j, (|B| + |e j|) * |P j s + d j s| := by
+    refine (Finset.abs_sum_le_sum_abs _ _).trans (Finset.sum_le_sum fun j _ => ?_)
+    rw [abs_mul]
+    refine mul_le_mul_of_nonneg_right ?_ (abs_nonneg _)
+    have a := hy j
+    have b := le_abs_self B
+    exact abs_le.2 ⟨by linarith [neg_abs_le (y j), le_abs_self (e j)],
+      by linarith [le_abs_self (y j), neg_abs_le (e j)]⟩
+  have h2 : |Fv mu P d e s y| ≤ |mu s| * ∑ j, (|B| + |e j|) * |P j s + d j s| := by
+    unfold Fv
+    rw [abs_mul]
+    exact mul_le_mul_of_nonneg_left h1 (abs_nonneg _)
+  exact h2.trans (Finset.single_le_sum (f := fun s => |mu s| * ∑ j, (|B| + |e j|) * |P j s + d j s|)
+    (fun s _ => mul_nonneg (abs_nonneg _) (Finset.sum_nonneg fun j _ =>
+      mul_nonneg (by positivity) (abs_nonneg _))) (mem_univ s))
+
+theorem term_bound (π : S → S → ℝ) (β : ℝ) (mu : S → ℝ) (P d : J → S → ℝ) (e : J → ℝ)
+    (x : S → List S → J → ℝ) (x0 : J → ℝ) (hπ : ∀ s s', 0 ≤ π s s')
+    (hπ1 : ∀ s, ∑ s', π s s' = 1) (hβ : 0 ≤ β) (K : ℝ)
+    (hK : ∀ s h, |Fv mu P d e s (inc x x0 s h)| ≤ K) :
+    ∀ n s h, |term π β mu P d e x x0 n s h| ≤ β ^ n * K := by
+  intro n
+  induction n with
+  | zero => intro s h; simpa [term] using hK s h
+  | succ n ih =>
+    intro s h
+    have h1 : |∑ s', π s s' * term π β mu P d e x x0 n s' (s :: h)| ≤ β ^ n * K := by
+      calc |∑ s', π s s' * term π β mu P d e x x0 n s' (s :: h)|
+          ≤ ∑ s', |π s s' * term π β mu P d e x x0 n s' (s :: h)| :=
+            Finset.abs_sum_le_sum_abs _ _
+        _ = ∑ s', π s s' * |term π β mu P d e x x0 n s' (s :: h)| :=
+            Finset.sum_congr rfl fun s' _ => by rw [abs_mul, abs_of_nonneg (hπ s s')]
+        _ ≤ ∑ s', π s s' * (β ^ n * K) :=
+            Finset.sum_le_sum fun s' _ => mul_le_mul_of_nonneg_left (ih s' (s :: h)) (hπ s s')
+        _ = β ^ n * K := by rw [← Finset.sum_mul, hπ1 s, one_mul]
+    have e1 : term π β mu P d e x x0 (n + 1) s h =
+        β * ∑ s', π s s' * term π β mu P d e x x0 n s' (s :: h) := rfl
+    rw [e1, abs_mul, abs_of_nonneg hβ]
+    calc β * |∑ s', π s s' * term π β mu P d e x x0 n s' (s :: h)| ≤ β * (β ^ n * K) :=
+          mul_le_mul_of_nonneg_left h1 hβ
+      _ = β ^ (n + 1) * K := by ring
+
+/-- **Holding the tree beats every plan with bounded positions** — transversality derived. -/
+theorem hold_beats_bounded_plans [DecidableEq J] (π : S → S → ℝ) (β : ℝ) (u : ℝ → ℝ)
+    (mu Y : S → ℝ) (P d : J → S → ℝ) (j0 : J) (c : S → List S → ℝ)
+    (x : S → List S → J → ℝ) (s0 : S)
+    (hπ : ∀ s s', 0 ≤ π s s') (hπ1 : ∀ s, ∑ s', π s s' = 1) (hβ : 0 ≤ β) (hβ1 : β < 1)
+    (hmu : ∀ s, 0 ≤ mu s)
+    (hE : ∀ j s, mu s * P j s = β * ∑ s', π s s' * (mu s' * (P j s' + d j s')))
+    (hd0 : ∀ s, d j0 s = Y s)
+    (hbud : ∀ s h, c s h + ∑ j, P j s * x s h j ≤
+      ∑ j, inc x (fun j => if j = j0 then 1 else 0) s h j * (P j s + d j s))
+    (hsg : ∀ s h, u (c s h) ≤ u (Y s) + mu s * (c s h - Y s))
+    (B : ℝ) (hB : ∀ s h j, |x s h j| ≤ B) :
+    ∃ K, (∀ n, ugap π β u Y c n s0 [] ≤ β ^ n * K) ∧
+      (∀ ε > 0, ∀ᶠ n in atTop, ugap π β u Y c n s0 [] ≤ ε) ∧
+      Tendsto (fun n => term π β mu P d (fun j => if j = j0 then 1 else 0) x
+        (fun j => if j = j0 then 1 else 0) n s0 []) atTop (𝓝 0) ∧
+      (∀ G, Tendsto (fun n => ugap π β u Y c n s0 []) atTop (𝓝 G) → G ≤ 0) := by
+  set e : J → ℝ := fun j => if j = j0 then 1 else 0 with he
+  obtain ⟨K, hK⟩ := Fv_bound mu P d e (max B 1)
+  have hinc : ∀ s h j, |inc x e s h j| ≤ max B 1 := by
+    intro s h j
+    cases h with
+    | nil =>
+      simp only [inc, he]
+      split_ifs
+      · rw [abs_one]; exact le_max_right _ _
+      · rw [abs_zero]; exact zero_le_one.trans (le_max_right _ _)
+    | cons s' h' => exact (hB s' h' j).trans (le_max_left _ _)
+  have hT := term_bound π β mu P d e x e hπ hπ1 hβ K (fun s h => hK s _ (hinc s h))
+  have hmain := hold_beats_every_plan π β u mu Y P d j0 c x s0 hπ hβ hmu hE hd0 hbud hsg
+  have part1 : ∀ n, ugap π β u Y c n s0 [] ≤ β ^ n * K := fun n =>
+    (hmain.1 n).trans ((neg_le_abs _).trans (hT n s0 []))
+  have h0 : Tendsto (fun n : ℕ => β ^ n * K) atTop (𝓝 0) := by
+    simpa using (tendsto_pow_atTop_nhds_zero_of_lt_one hβ hβ1).mul_const K
+  have hTend : Tendsto (fun n => term π β mu P d e x e n s0 []) atTop (𝓝 0) :=
+    squeeze_zero_norm (fun n => by rw [Real.norm_eq_abs]; exact hT n s0 []) h0
+  refine ⟨K, part1, fun ε hε => ?_, hTend, fun G hG => hmain.2 G hG hTend⟩
+  exact (h0.eventually (eventually_le_nhds hε)).mono fun n hn => (part1 n).trans hn
+
+
+/-! ### Any reference portfolio, bounded positions -/
+
+/-- Holding a reference portfolio `e` that finances the reference consumption `Y` beats every
+plan with bounded positions. -/
+theorem hold_beats_bounded_e (π : S → S → ℝ) (β : ℝ) (u : ℝ → ℝ) (mu Y : S → ℝ)
+    (P d : J → S → ℝ) (e : J → ℝ) (c : S → List S → ℝ) (x : S → List S → J → ℝ) (s0 : S)
+    (hπ : ∀ s s', 0 ≤ π s s') (hπ1 : ∀ s, ∑ s', π s s' = 1) (hβ : 0 ≤ β) (hβ1 : β < 1)
+    (hmu : ∀ s, 0 ≤ mu s)
+    (hE : ∀ j s, mu s * P j s = β * ∑ s', π s s' * (mu s' * (P j s' + d j s')))
+    (hhold : ∀ s, Y s + ∑ j, P j s * e j = ∑ j, e j * (P j s + d j s))
+    (hbud : ∀ s h, c s h + ∑ j, P j s * x s h j ≤ ∑ j, inc x e s h j * (P j s + d j s))
+    (hsg : ∀ s h, u (c s h) ≤ u (Y s) + mu s * (c s h - Y s))
+    (B : ℝ) (hB : ∀ s h j, |x s h j| ≤ B) (hBe : ∀ j, |e j| ≤ B) :
+    ∃ K, (∀ n, ugap π β u Y c n s0 [] ≤ β ^ n * K) ∧
+      (∀ ε > 0, ∀ᶠ n in atTop, ugap π β u Y c n s0 [] ≤ ε) := by
+  obtain ⟨K, hK⟩ := Fv_bound mu P d e B
+  have hinc : ∀ s h j, |inc x e s h j| ≤ B := by
+    intro s h j
+    cases h with
+    | nil => exact hBe j
+    | cons s' h' => exact hB s' h' j
+  have hT := term_bound π β mu P d e x e hπ hπ1 hβ K (fun s h => hK s _ (hinc s h))
+  have hF : Fv mu P d e s0 (inc x e s0 []) = 0 := by simp [Fv, inc]
+  have part1 : ∀ n, ugap π β u Y c n s0 [] ≤ β ^ n * K := by
+    intro n
+    have a := ugap_le π β u mu Y c hπ hβ hsg n s0 []
+    have b := gap_le π β mu Y P d e c x e hπ hβ hmu hE hhold hbud n s0 []
+    rw [hF] at b
+    have := neg_le_abs (term π β mu P d e x e n s0 [])
+    linarith [hT n s0 []]
+  have h0 : Tendsto (fun n : ℕ => β ^ n * K) atTop (𝓝 0) := by
+    simpa using (tendsto_pow_atTop_nhds_zero_of_lt_one hβ hβ1).mul_const K
+  exact ⟨K, part1, fun ε hε =>
+    (h0.eventually (eventually_le_nhds hε)).mono fun n hn => (part1 n).trans hn⟩
+
+/-! ### Heterogeneous households -/
+
+/-- Household `i`'s endowment: `θ i` trees and nothing else. -/
+def endow [DecidableEq J] {I : Type*} (θ : I → ℝ) (j0 : J) (i : I) (j : J) : ℝ :=
+  if j = j0 then θ i else 0
+
+/-- **Heterogeneous Lucas economy with debt.**  Households hold tree shares `θ i > 0` summing
+to one and share a CRRA felicity with `0 < p < 1`.  Every other asset (debt, insurance, ...) is in
+zero net supply and priced by the Euler equation at `mu = Y ^ (p - 1)`.  Then
+(1) consuming `θ i * Y` and holding `θ i` trees clears every market, and
+(2) for every household, every plan with bounded positions (short sales and borrowing allowed,
+zero consumption allowed) gains at most `β ^ n * K` over `n` periods: holding the tree share is
+optimal, and no household borrows. -/
+theorem hetero_equilibrium [DecidableEq J] {I : Type*} [Fintype I] (θ : I → ℝ)
+    (hθ : ∀ i, 0 < θ i) (hθ1 : ∑ i, θ i = 1)
+    (π : S → S → ℝ) (β p : ℝ) (Y : S → ℝ) (P d : J → S → ℝ) (j0 : J)
+    (hπ : ∀ s s', 0 ≤ π s s') (hπ1 : ∀ s, ∑ s', π s s' = 1) (hβ : 0 ≤ β) (hβ1 : β < 1)
+    (hp0 : 0 < p) (hp1 : p < 1) (hY : ∀ s, 0 < Y s)
+    (hE : ∀ j s, Y s ^ (p - 1) * P j s =
+      β * ∑ s', π s s' * (Y s' ^ (p - 1) * (P j s' + d j s')))
+    (hd0 : ∀ s, d j0 s = Y s) :
+    (∀ s, ∑ i, θ i * Y s = Y s) ∧
+    (∀ j, ∑ i, endow θ j0 i j = if j = j0 then 1 else 0) ∧
+    ∀ i (c : S → List S → ℝ) (x : S → List S → J → ℝ) (s0 : S) (B : ℝ),
+      (∀ s h, 0 ≤ c s h) →
+      (∀ s h, c s h + ∑ j, P j s * x s h j ≤
+        ∑ j, inc x (endow θ j0 i) s h j * (P j s + d j s)) →
+      (∀ s h j, |x s h j| ≤ B) → |θ i| ≤ B →
+      ∃ K, (∀ n, ugap π β (fun c => 1 / p * c ^ p) (fun s => θ i * Y s) c n s0 [] ≤ β ^ n * K) ∧
+        (∀ ε > 0, ∀ᶠ n in atTop,
+          ugap π β (fun c => 1 / p * c ^ p) (fun s => θ i * Y s) c n s0 [] ≤ ε) := by
+  refine ⟨fun s => by rw [← Finset.sum_mul, hθ1, one_mul], fun j => ?_, ?_⟩
+  · unfold endow
+    split_ifs
+    · exact hθ1
+    · simp
+  intro i c x s0 B hc hbud hB hθB
+  set mu : S → ℝ := fun s => θ i ^ (p - 1) * Y s ^ (p - 1) with hmu
+  have hmu0 : ∀ s, 0 ≤ mu s := fun s =>
+    (mul_pos (Real.rpow_pos_of_pos (hθ i) _) (Real.rpow_pos_of_pos (hY s) _)).le
+  have hEi : ∀ j s, mu s * P j s = β * ∑ s', π s s' * (mu s' * (P j s' + d j s')) := by
+    intro j s
+    have h := congrArg (fun z => θ i ^ (p - 1) * z) (hE j s)
+    simp only [hmu]
+    have e1 : θ i ^ (p - 1) * Y s ^ (p - 1) * P j s = θ i ^ (p - 1) * (Y s ^ (p - 1) * P j s) := by
+      ring
+    rw [e1, h]
+    simp only [Finset.mul_sum]
+    exact Finset.sum_congr rfl fun s' _ => by ring
+  have hhold : ∀ s, θ i * Y s + ∑ j, P j s * endow θ j0 i j =
+      ∑ j, endow θ j0 i j * (P j s + d j s) := by
+    intro s
+    have a1 : ∑ j, P j s * endow θ j0 i j = P j0 s * θ i := by simp [endow]
+    have a2 : ∑ j, endow θ j0 i j * (P j s + d j s) = θ i * (P j0 s + d j0 s) := by
+      simp [endow]
+    rw [a1, a2, hd0 s]
+    ring
+  have hsg : ∀ s h, 1 / p * c s h ^ p ≤ 1 / p * (θ i * Y s) ^ p + mu s * (c s h - θ i * Y s) := by
+    intro s h
+    have h1 := power_sg_nonneg p (c s h) (θ i * Y s) hp0 hp1 (hc s h) (mul_pos (hθ i) (hY s))
+    have hm : (θ i * Y s) ^ (p - 1) = θ i ^ (p - 1) * Y s ^ (p - 1) :=
+      Real.mul_rpow (hθ i).le (hY s).le
+    rw [hm] at h1
+    exact h1
+  have hBe : ∀ j, |endow θ j0 i j| ≤ B := by
+    intro j
+    unfold endow
+    split_ifs
+    · exact hθB
+    · rw [abs_zero]; exact (abs_nonneg _).trans hθB
+  exact hold_beats_bounded_e π β (fun c => 1 / p * c ^ p) mu (fun s => θ i * Y s) P d
+    (endow θ j0 i) c x s0 hπ hπ1 hβ hβ1 hmu0 hEi hhold hbud hsg B hB hBe
+
+end HeteroLucas
+
+end
+
+
+#print axioms HeteroLucas.Fv_bound
+#print axioms HeteroLucas.term_bound
+#print axioms HeteroLucas.hold_beats_bounded_plans
+#print axioms HeteroLucas.hold_beats_bounded_e
+#print axioms HeteroLucas.hetero_equilibrium

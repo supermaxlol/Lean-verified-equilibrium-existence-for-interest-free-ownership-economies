@@ -1,0 +1,3 @@
+'CARASharing.cara_supergradient' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CARASharing.cara_optimal' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CARASharing.cara_clears' depends on axioms: [propext, Classical.choice, Quot.sound]

@@ -1,0 +1,3 @@
+'CRRAUnique.bernoulli_pos_strict' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CRRAUnique.crra_strict_supergradient_all' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CRRAUnique.crra_equilibrium_is_ownership' depends on axioms: [propext, Classical.choice, Quot.sound]

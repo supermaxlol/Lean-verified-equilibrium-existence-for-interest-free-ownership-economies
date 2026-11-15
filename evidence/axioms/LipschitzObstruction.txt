@@ -1,0 +1,5 @@
+'LipschitzObstruction.lipschitz_of_tendsto' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LipschitzObstruction.lipschitz_of_eventually' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LipschitzObstruction.unbounded_constants' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LipschitzObstruction.sqrt_not_lipschitz' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LipschitzObstruction.afriat_scale_vanishes' depends on axioms: [propext, Classical.choice, Quot.sound]

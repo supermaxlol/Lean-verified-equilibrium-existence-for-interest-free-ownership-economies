@@ -1,0 +1,5 @@
+'BoundaryInterior.boundary_improvable' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BoundaryInterior.optimum_interior' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BoundaryInterior.sqrt_inada' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BoundaryInterior.sqrt_lip' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BoundaryInterior.sqrt_optimum_interior' depends on axioms: [propext, Classical.choice, Quot.sound]

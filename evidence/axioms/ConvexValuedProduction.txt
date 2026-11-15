@@ -1,0 +1,3 @@
+'SetValuedGND.setValued_gnd' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CorrProductionEconomy.net_closed' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CorrProductionEconomy.equilibrium_exists' depends on axioms: [propext, Classical.choice, Quot.sound]

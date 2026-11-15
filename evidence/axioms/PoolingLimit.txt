@@ -1,0 +1,7 @@
+'PoolingLimit.pv_tendsto' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PoolingLimit.pv_floor' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PoolingLimit.pv_antitone' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PoolingLimit.pv_eventually_lt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PoolingLimit.pv_indep' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PoolingLimit.pv_indep_tendsto' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PoolingLimit.reserve_floor' depends on axioms: [propext, Classical.choice, Quot.sound]

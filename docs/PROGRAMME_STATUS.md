@@ -23,7 +23,7 @@ conflicting interests or institutional power disappear.
 
 “Verified” below refers to the stated formal theorem under its assumptions, not
 an approval of an entire institution. Only the 4.35 foundation and Stages
-183–220 accepted dependency chain, Stage 222 frontier, Stage 224 strict/stress/reserve extension, Stage 226 payout/price-certificate extension, and Stages 228–249 production/welfare/frontier extension are included in this repository release. Earlier
+183–220 accepted dependency chain, Stage 222 frontier, Stage 224 strict/stress/reserve extension, Stage 226 payout/price-certificate extension, Stages 228–249 production/welfare/frontier extension, and Stages 250–355 (ownership, dynamics, interest-free contracting and Sonnenschein–Mantel–Debreu; see `docs/stages/`) are included in this repository release. Earlier
 benchmark/diffusion results are described as programme context, not newly
 released or independently rebuilt by this package.
 

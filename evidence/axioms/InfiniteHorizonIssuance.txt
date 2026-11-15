@@ -1,0 +1,7 @@
+'InfiniteHorizonIssuance.clearing_cap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'InfiniteHorizonIssuance.cap_clears' depends on axioms: [propext, Classical.choice, Quot.sound]
+'InfiniteHorizonIssuance.equilibrium_return' depends on axioms: [propext, Classical.choice, Quot.sound]
+'InfiniteHorizonIssuance.trade_preserves_share' depends on axioms: [propext, Classical.choice, Quot.sound]
+'InfiniteHorizonIssuance.consumption_share' depends on axioms: [propext, Classical.choice, Quot.sound]
+'InfiniteHorizonIssuance.share_converges' depends on axioms: [propext, Classical.choice, Quot.sound]
+'InfiniteHorizonIssuance.pro_rata_preserves' depends on axioms: [propext, Classical.choice, Quot.sound]

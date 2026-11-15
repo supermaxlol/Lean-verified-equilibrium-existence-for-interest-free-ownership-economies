@@ -1,0 +1,8 @@
+'MantelStrict.psi_strict' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MantelStrict.brk_lt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MantelStrict.su_continuous' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MantelStrict.su_strictConcave' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MantelStrict.su_strictMono' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MantelStrict.su_unique_opt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MantelStrict.afriat_strict' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MantelStrict.mantel_strict' depends on axioms: [propext, Classical.choice, Quot.sound]

@@ -1,0 +1,4 @@
+'GridLimit.dot_continuous' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GridLimit.uniform_limit_optimal' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GridLimit.aggregate_limit' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GridLimit.grid_limit' depends on axioms: [propext, Classical.choice, Quot.sound]

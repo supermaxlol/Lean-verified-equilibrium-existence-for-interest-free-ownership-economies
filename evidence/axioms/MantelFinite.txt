@@ -1,0 +1,7 @@
+'MantelFinite.dot_affine' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MantelFinite.afriat_continuous' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MantelFinite.afriat_concave' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MantelFinite.afriat_strictMono' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MantelFinite.afriat_potential' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MantelFinite.dot_mdir' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MantelFinite.mantel_finite' depends on axioms: [propext, Classical.choice, Quot.sound]

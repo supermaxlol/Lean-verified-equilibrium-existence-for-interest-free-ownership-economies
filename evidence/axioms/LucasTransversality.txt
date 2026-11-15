@@ -1,0 +1,3 @@
+'LucasTransversality.Fv_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LucasTransversality.term_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LucasTransversality.hold_beats_bounded_plans' depends on axioms: [propext, Classical.choice, Quot.sound]

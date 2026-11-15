@@ -1,0 +1,7 @@
+'Mantel.rp_level' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Mantel.exists_higher' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Mantel.util_demand' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Mantel.util_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Mantel.util_lt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Mantel.decompose_rational' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Mantel.mantel_rationalizable' depends on axioms: [propext, Classical.choice, Quot.sound]

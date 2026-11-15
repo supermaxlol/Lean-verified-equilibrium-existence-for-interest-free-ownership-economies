@@ -1,0 +1,6 @@
+'LucasTree.tree_price_euler' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LucasTree.hold_bellman' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LucasTree.hold_bellman_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LucasTree.tree_bellman' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LucasTree.tree_bellman_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LucasTree.tree_clears' depends on axioms: [propext, Classical.choice, Quot.sound]

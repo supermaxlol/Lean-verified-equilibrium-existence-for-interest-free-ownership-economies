@@ -1,0 +1,4 @@
+'BoundaryExtended.log_blowup' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BoundaryExtended.crra_neg_blowup' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BoundaryExtended.ext_optimum_interior' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BoundaryExtended.log_optimum' depends on axioms: [propext, Classical.choice, Quot.sound]

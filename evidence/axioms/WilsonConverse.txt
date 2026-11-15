@@ -1,0 +1,4 @@
+'WilsonConverse.foc_deriv' depends on axioms: [propext, Classical.choice, Quot.sound]
+'WilsonConverse.tolerance_share' depends on axioms: [propext, Classical.choice, Quot.sound]
+'WilsonConverse.wilson_converse' depends on axioms: [propext, Classical.choice, Quot.sound]
+'WilsonConverse.wilson_hara' depends on axioms: [propext, Classical.choice, Quot.sound]

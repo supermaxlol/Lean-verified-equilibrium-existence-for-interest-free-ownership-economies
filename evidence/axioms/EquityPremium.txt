@@ -1,0 +1,5 @@
+'EquityPremium.inv_tangent' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EquityPremium.inv_tangent_strict' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EquityPremium.riskless_price_ge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EquityPremium.premium_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EquityPremium.premium_pos' depends on axioms: [propext, Classical.choice, Quot.sound]

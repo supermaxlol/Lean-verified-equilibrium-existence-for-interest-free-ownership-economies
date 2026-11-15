@@ -1,0 +1,3 @@
+'HomotheticFixedClaim.share_strictly_optimal' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HomotheticFixedClaim.fixed_claim_strictly_worse' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HomotheticFixedClaim.log_strict_supergradient' depends on axioms: [propext, Classical.choice, Quot.sound]

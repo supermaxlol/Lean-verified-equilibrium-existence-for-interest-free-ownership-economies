@@ -1,0 +1,6 @@
+'PowerUtility.inv_supergradient' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PowerUtility.inv_strict_supergradient' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PowerUtility.inv_homogeneous' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PowerUtility.sqrt_supergradient' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PowerUtility.sqrt_homogeneous' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PowerUtility.crra2_ownership_equilibrium' depends on axioms: [propext, Classical.choice, Quot.sound]

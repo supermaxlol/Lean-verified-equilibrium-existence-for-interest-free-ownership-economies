@@ -1,0 +1,7 @@
+'DecompositionOvershoot.p2_unit' depends on axioms: [propext, Classical.choice, Quot.sound]
+'DecompositionOvershoot.p2_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'DecompositionOvershoot.Z0_walras' depends on axioms: [propext, Classical.choice, Quot.sound]
+'DecompositionOvershoot.cZ0' depends on axioms: [propext, Classical.choice, Quot.sound]
+'DecompositionOvershoot.mx_00' depends on axioms: [propext, Classical.choice, Quot.sound]
+'DecompositionOvershoot.mx_10' depends on axioms: [propext, Classical.choice, Quot.sound]
+'DecompositionOvershoot.overshoot' depends on axioms: [propext, Classical.choice, Quot.sound]

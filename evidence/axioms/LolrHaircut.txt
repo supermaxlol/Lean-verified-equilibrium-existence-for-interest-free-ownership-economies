@@ -1,0 +1,4 @@
+'LolrHaircut.safe_zero_loss' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LolrHaircut.loss_antitone' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LolrHaircut.market_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LolrHaircut.lolr_design' depends on axioms: [propext, Classical.choice, Quot.sound]

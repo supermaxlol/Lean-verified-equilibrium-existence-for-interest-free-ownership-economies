@@ -1,0 +1,5 @@
+'TatonnementStability.tatonnement_distance_antitone' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TatonnementStability.shell_compact' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TatonnementStability.norm_conserved' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TatonnementStability.tatonnement_converges' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TatonnementStability.tatonnement_converges_warp' depends on axioms: [propext, Classical.choice, Quot.sound]

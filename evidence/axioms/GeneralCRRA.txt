@@ -1,0 +1,7 @@
+'GeneralCRRA.bernoulli_neg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GeneralCRRA.bernoulli_neg_strict' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GeneralCRRA.bernoulli_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GeneralCRRA.crra_supergradient' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GeneralCRRA.crra_strict_supergradient' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GeneralCRRA.crra_homogeneous' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GeneralCRRA.crra_ownership_equilibrium' depends on axioms: [propext, Classical.choice, Quot.sound]

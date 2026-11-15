@@ -1,0 +1,3 @@
+'EquityDebt.equity_debt_optimal' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EquityDebt.debt_zero_unique' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EquityDebt.equity_debt_clears' depends on axioms: [propext, Classical.choice, Quot.sound]

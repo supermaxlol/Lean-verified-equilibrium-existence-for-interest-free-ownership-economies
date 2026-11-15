@@ -1,0 +1,7 @@
+'BoundaryPower.power_inada' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BoundaryPower.crra_sg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BoundaryPower.power_lip' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BoundaryPower.power_optimum_interior' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BoundaryPower.cara_not_inada' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BoundaryPower.cara_sg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BoundaryPower.cara_corner_optimal' depends on axioms: [propext, Classical.choice, Quot.sound]

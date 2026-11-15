@@ -1,0 +1,4 @@
+'BeliefSharing.belief_optimal' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BeliefSharing.belief_cost' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BeliefSharing.belief_clears' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BeliefSharing.belief_common' depends on axioms: [propext, Classical.choice, Quot.sound]

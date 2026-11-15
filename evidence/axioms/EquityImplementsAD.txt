@@ -1,0 +1,4 @@
+'EquityImplementsAD.equity_budget' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EquityImplementsAD.equity_optimal' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EquityImplementsAD.shares_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EquityImplementsAD.equity_equilibrium' depends on axioms: [propext, Classical.choice, Quot.sound]

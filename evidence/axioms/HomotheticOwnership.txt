@@ -1,0 +1,4 @@
+'HomotheticOwnership.share_optimal' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HomotheticOwnership.ownership_equilibrium' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HomotheticOwnership.log_supergradient' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HomotheticOwnership.log_homogeneous' depends on axioms: [propext, Classical.choice, Quot.sound]

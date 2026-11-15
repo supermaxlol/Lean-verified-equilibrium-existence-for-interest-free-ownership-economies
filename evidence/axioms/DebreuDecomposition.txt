@@ -1,0 +1,5 @@
+'DebreuDecomposition.nsq_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'DebreuDecomposition.proj_walras' depends on axioms: [propext, Classical.choice, Quot.sound]
+'DebreuDecomposition.decomposition' depends on axioms: [propext, Classical.choice, Quot.sound]
+'DebreuDecomposition.exists_positive_coeff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'DebreuDecomposition.positive_decomposition' depends on axioms: [propext, Classical.choice, Quot.sound]

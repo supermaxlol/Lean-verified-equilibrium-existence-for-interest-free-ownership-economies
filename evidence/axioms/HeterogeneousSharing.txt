@@ -1,0 +1,5 @@
+'HeterogeneousSharing.hara_optimal' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeterogeneousSharing.hara_clears' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeterogeneousSharing.linear_rule' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeterogeneousSharing.side_payments_cancel' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeterogeneousSharing.ownership_fails_heterogeneous' depends on axioms: [propext, Classical.choice, Quot.sound]

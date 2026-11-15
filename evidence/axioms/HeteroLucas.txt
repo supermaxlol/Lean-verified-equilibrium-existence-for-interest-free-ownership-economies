@@ -1,0 +1,5 @@
+'HeteroLucas.Fv_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeteroLucas.term_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeteroLucas.hold_beats_bounded_plans' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeteroLucas.hold_beats_bounded_e' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeteroLucas.hetero_equilibrium' depends on axioms: [propext, Classical.choice, Quot.sound]

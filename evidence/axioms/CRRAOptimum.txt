@@ -1,0 +1,5 @@
+'CRRAOptimum.crra_supergradient' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CRRAOptimum.power_sg_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CRRAOptimum.copt_props' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CRRAOptimum.crra_optimum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CRRAOptimum.power_optimum' depends on axioms: [propext, Classical.choice, Quot.sound]

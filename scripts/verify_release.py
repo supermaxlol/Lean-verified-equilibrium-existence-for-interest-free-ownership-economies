@@ -42,7 +42,7 @@ def main():
     assert total == manifest['audited_endpoints']
     config = tomllib.loads((ROOT/'lakefile.toml').read_text())
     deps = json.loads((ROOT/'lake-manifest.json').read_text())
-    revisions = {p['name']:p['rev'] for p in deps['packages']}
+    revisions = {p['name'].strip('«»'):p['rev'] for p in deps['packages']}
     assert revisions == manifest['dependency_revisions']
     for required in config['require']:
         assert required['rev'] == revisions[required['name']]
@@ -67,7 +67,7 @@ def main():
     assert reserve['passed']
     payouts=runpy.run_path(str(ROOT/'tests/payout_controls.py'))['check']()
     assert payouts['passed']
-    print(f'PASS: {len(modules)} source-identical modules; {total} retained declaration audits; standard foundations only.')
+    print(f'PASS: {len(modules)} hash-bound modules; {total} retained declaration audits; standard foundations only.')
     print(f"PASS: {result['named_controls']} controls, {result['exact_refund_cases']} exact refund cases, {result['generated_attempts']} generated attempts.")
     print('PASS: import closure, pinned dependencies and configured library roots. No Lean module rebuilt.')
     print('PASS: retained SQLite and connected-demo source/evidence bindings; these runtime controls were not rerun.')

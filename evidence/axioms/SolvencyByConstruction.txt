@@ -1,0 +1,6 @@
+'SolvencyByConstruction.share_solvent' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SolvencyByConstruction.shares_exhaust' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SolvencyByConstruction.default_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SolvencyByConstruction.fixed_claims_exceed' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SolvencyByConstruction.leverage_amplifies' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SolvencyByConstruction.share_ratio' depends on axioms: [propext, Classical.choice, Quot.sound]

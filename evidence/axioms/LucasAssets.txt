@@ -1,0 +1,8 @@
+'LucasAssets.power_sg_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LucasAssets.log_sg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LucasAssets.asset_price_exists' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LucasAssets.node_step' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LucasAssets.gap_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LucasAssets.ugap_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LucasAssets.hold_beats_every_plan' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LucasAssets.power_plans' depends on axioms: [propext, Classical.choice, Quot.sound]

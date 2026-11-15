@@ -1,0 +1,6 @@
+'TailBound.chernoff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TailBound.exp_le_chord' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TailBound.mgf_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TailBound.mgf_indep' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TailBound.pool_tail' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TailBound.buffer_size' depends on axioms: [propext, Classical.choice, Quot.sound]

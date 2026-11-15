@@ -1,0 +1,3 @@
+'Mantel.util_unaffordable' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Mantel.util_zero_neg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Mantel.util_not_continuous' depends on axioms: [propext, Classical.choice, Quot.sound]
