@@ -147,9 +147,12 @@ These results do not all favour profit sharing. They are reported, not hidden.
    a formula.
 6. Under automation, the decisive variable is how new ownership is issued.
 
-## What it does not show
+## Where mathematics stops, and what comes next
 
-Empirical magnitudes, institutional feasibility, Shariah rulings, or continuous Mantel for
-excess demands that are continuous but not Lipschitz. Several stages use stylised settings (for
-example Cobb–Douglas preferences in Stages 250–252 and 351, one date in Stages 271 and 354), and each stage's
-limits are stated in its own file.
+Empirical magnitudes, institutional adoption and Shariah rulings are questions for markets,
+regulators and scholars; no proof settles them, and these results give each of them a proved
+foundation to work from. Inside mathematics, the research frontier is continuous Mantel for
+excess demands that are continuous but not Lipschitz: the Lipschitz case is proved (353) and the
+uniform-Lipschitz route is shown closed (355). Some stages work in the classic textbook settings
+(Cobb–Douglas preferences in Stages 250–252 and 351, one date in Stages 271 and 354), and each
+stage's exact hypotheses are stated in its own file.

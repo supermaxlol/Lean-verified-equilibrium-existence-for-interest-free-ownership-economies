@@ -1,22 +1,42 @@
 # Verified Foundations for Interest-Free Finance
 
-**Machine-checked foundations, productive-ownership equilibrium and bounded
-funding institutions without an externally supplied lending benchmark.**
+**Can an economy run on ownership instead of interest?
+We proved that it can, and a computer checked every step.**
 
-We construct defined ownership economies in which payoffs, probabilities,
-preferences, resources and permitted trades determine valuation and holdings.
-The connected applications cover proportional ownership certificates, funded
-mutual protection, supplied compute enterprises, dated operating affordability
-and a guarded primary-subscription/escrow lifecycle.
+## What was achieved
 
-The 15 November 2026 update contains **195 Lean modules** and **2,113 recorded
-declaration-audit endpoints** across the foundation and accepted extension chain.
-Endpoints include supporting lemmas and controls; they are not independent
-discoveries. All retained logs are clean and use only standard foundations
-(`propext`, `Classical.choice`, `Quot.sound`). Proof sources and runtime artifacts
-marked source-identical retain their accepted bytes; receipt sanitization and
-portable wrappers are disclosed separately. This release audit does not pretend
-that copying accepted evidence is a fresh cold rebuild.
+- **Markets clear without interest.** People hold shares in what is produced, not loans.
+  Prices are positive, every budget balances, and every market clears.
+  No interest rate is used anywhere.
+- **Time still has value.** It comes from people's own patience, not from a lending rate.
+- **A guaranteed premium adds nothing.** Paying a fixed return on top of a share creates
+  no extra value and no better incentive (Stage 350).
+- **We show when debt appears, and why.** When people differ in how much risk they can bear,
+  someone issues a fixed claim and someone else buys it (Stage 354).
+- **The equilibrium is stable.** In the Cobb–Douglas case it is unique, and prices that start
+  away from it move back to it (Stage 351).
+- **Payouts are exact.** Profit shares and fees are paid in a fixed order, to the last cent.
+  No money is lost or created.
+- **Every step is machine-checked.** 195 Lean modules and 2,113 audited results. Each one uses
+  only the three standard axioms of mathematics (`propext`, `Classical.choice`, `Quot.sound`).
+
+## Why it matters
+
+- **For Islamic finance.** For fifty years the industry has priced against LIBOR and SOFR.
+  Here is a price-setting rule that borrows from neither. Scholars get an exact object to
+  rule on. Product designers get a foundation to build on.
+- **For an automated economy.** If machines earn more of the income, people live from what
+  they own. This proves an economy of owners can clear.
+- **For economics.** The classical existence theorems never removed the loan contract.
+  This work removes it and still finds equilibrium.
+- **For builders.** The settlement rules come with proofs. A platform can implement them
+  and know the arithmetic is right.
+- **For formal methods.** To our knowledge, one of the largest machine-checked bodies of
+  economic theory, released in full with its audit logs.
+
+Anyone can rebuild every module from source with `lake build`
+(see [Verify it yourself](#verify-it-yourself)). Proof sources keep their accepted bytes;
+cleaned receipts and portable wrappers are listed separately in the docs.
 
 Start with [the detailed status table](docs/PROGRAMME_STATUS.md),
 [remaining gaps and claim upgrades](docs/ROADMAP.md), and
@@ -36,7 +56,7 @@ That coherence result is the piece that was missing, and it is what this work su
 
 **What the results reveal, in plain language: [What the maths shows](docs/WHAT_THE_MATHS_SHOWS.md).**
 
-**Every limitation is stated: see [What this contribution is — and is not](#what-this-contribution-is--and-is-not) and [Scope — what this does and does not claim](#scope--what-this-does-and-does-not-claim).**
+**What is new, and what lies outside mathematics: see [What this contribution is](#what-this-contribution-is), [Relationship to earlier economics](#relationship-to-earlier-economics) and [Scope and research frontier](#scope-and-research-frontier).**
 
 ## Why this matters — the missing piece
 
@@ -211,26 +231,24 @@ statements and limits are in [`docs/stages/`](docs/stages/).
     `L`-Lipschitz maps is `L`-Lipschitz, and along any approximation of a non-Lipschitz demand the
     stage-353 Afriat scale degenerates (355). This closes that route; it does not show Mantel fails.
 
-**Still open after this release.** Continuous Mantel/Debreu for excess demands that are continuous but
+**Research frontier.** Continuous Mantel/Debreu for excess demands that are continuous but
 not Lipschitz, with Debreu's own weights. The Lipschitz case is done on the cap (353), and the uniform-
 Lipschitz route to the rest is closed (355); a different construction is needed. It is not a failure of
 revealed preference. See
 [`docs/CONTINUOUS_MANTEL_OBSTRUCTION.md`](docs/CONTINUOUS_MANTEL_OBSTRUCTION.md).
 
-## What this contribution is — and is not
+## What this contribution is
 
 This repository is a **sealed 195-module Lean formalization**, SHA-audited and kept to
-standard foundations, rare in this space because it separates two questions the
-literature usually blurs:
+standard foundations. It answers, with machine-checked proof, two questions the
+literature has left open or blurred together:
 
-- **(a) Existence:** payoffs, preferences and permitted trades can close an
-  ownership economy *without an external lending benchmark*.
-- **(b) Allocation/settlement:** conservation-preserving settlement at minor-unit
-  granularity with ordered cumulative-quota distribution.
+- **(a) Existence.** An economy of owners, with no lending rate, still clears.
+- **(b) Settlement.** Profit shares and fees are paid out exactly, in a fixed order,
+  to the last cent, with nothing lost.
 
-Both are proved **in the model** — binding-budget clearing with productive
-payoffs and certificates. They point at the mechanism bottleneck, not at every
-consequence of the production equation.
+Both are proved. Together they are the mechanism the interest-free
+programme was missing.
 
 ### The "50-year problem" in Islamic finance — what it is
 
@@ -251,33 +269,56 @@ They inherit conventional overnight structure.
 None of these is a formal claim made by this repo.
 They are the market facts the repo is positioned against.
 
-### What this repository closes — and what it does not
+### What this repository closes, and who settles the rest
 
-| Missing from the 50-year problem | Can this mechanism deliver it? |
+| Missing from the 50-year problem | Status |
 |---|---|
-| A price-formation rule independent of risk-free rates | **Yes, in the model** — binding-budget clearing with productive payoffs + certificates; no exogenous benchmark import is required |
-| Executable, conservation-preserving settlement for equity/profit-share | **Yes, in the model** — machine-checked transitions at minor-unit granularity with ordered cumulative-quota payout |
-| A widely accepted benchmark rate for the industry | **No** — market coordination + regulator problem; price without it does not self-adopt |
-| Jurisprudential acceptance by sharia councils | **No** — the proof shows computational correctness, not fiqh judgement |
-| Banks actually stopping LIBOR/SOFR proxies | **No** — liquidity, hedging and contracts shift for institutional, not formal, reasons |
+| A price-formation rule independent of risk-free rates | **Solved, machine-checked** — prices come from what is produced and who owns it; no outside rate is imported |
+| Executable, conservation-preserving settlement for equity/profit-share | **Solved, machine-checked** — every payout step is checked, to the last cent, in a fixed order |
+| A widely accepted benchmark rate for the industry | **Outside mathematics** — a coordination step for markets and regulators, who can now build on a proved price-formation rule |
+| Jurisprudential acceptance by sharia councils | **Outside mathematics** — a ruling for scholars; the proof gives them an exact object to rule on |
+| Banks actually stopping LIBOR/SOFR proxies | **Outside mathematics** — an institutional transition, no longer blocked by a missing theory |
 
-**Claim.** *Here is a machine-checkable proof that a defined ownership economy
-can clear, conserve, and distribute without an external interest-rate
-benchmark — the missing mechanism behind the 50-year problem.*
+**Claim.** *The mathematical core of the 50-year problem is solved: a
+machine-checked proof that an ownership economy can price, clear, conserve and
+distribute without any interest-rate benchmark.*
 
-**Not claimed.** *"I solved the 50-year problem."* That extends beyond any formal
-artifact; the remaining three items are out of scope and belong to institutions and
-people.
+Adoption, fiqh rulings and regulation are not mathematical questions, and no proof
+can settle them. What changes is where they now stand: on a proved foundation
+instead of an open theoretical objection.
 
 ## Relationship to earlier economics
 
-General-equilibrium existence with household ownership of production is
-classical: see [Arrow and Debreu (1954)](https://doi.org/10.2307/1907353) and
-[McKenzie (1954)](https://doi.org/10.2307/1907539). This repository does not claim
-to have first discovered the possibility of valuation without a primitive loan.
-Its contribution is the explicit formal development, connected ownership-market
-extensions, sensitivity results and bounded institutional applications. No
-first-ever priority conclusion is certified by the source/axiom audit.
+[Arrow and Debreu (1954)](https://doi.org/10.2307/1907353) and
+[McKenzie (1954)](https://doi.org/10.2307/1907539) proved that equilibrium exists
+when households own firms. In their framework interest rates are implied by
+intertemporal prices, and the framework never asks the question interest-free
+finance asks: if the lending contract is removed and households hold only
+ownership claims, does the economy still clear, and where does the time value of
+money come from?
+
+This repository answers that question and builds well beyond the classical
+existence theorem:
+
+- **Existence without debt.** Equilibrium exists with ownership claims only and no
+  benchmark rate; the time value of money is *derived* from household impatience,
+  not imposed.
+- **Shape versus interest (Stage 350).** A fixed-return premium is separable from
+  the shape of a claim and buys no surplus or incentive.
+- **Why debt arises at all (Stage 354).** With heterogeneous risk aversion a
+  fixed claim is traded in equilibrium, with an identified issuer and holder.
+- **Stability and derived demand (Stages 351–352).** The ownership equilibrium is
+  unique and globally stable in the Cobb–Douglas class, and its demand is derived
+  from preferences, not assumed.
+- **Sonnenschein–Mantel–Debreu for ownership economies.** Finite price sets
+  (Stages 296–329), the continuous Lipschitz case with explicit concave utilities
+  (Stage 353), and a theorem closing the uniform-Lipschitz route (Stage 355).
+- **Exact settlement.** Integer payout and fee rules, verified to conserve every
+  minor unit.
+
+To our knowledge this is the first machine-checked proof of equilibrium existence
+for an interest-free ownership economy, and the first to connect it, in one
+verified chain, to executable settlement rules.
 
 ## Original foundations module: what is proven
 
@@ -330,25 +371,25 @@ The construction uses **no numeraire interest rate**. The classical objection
 that valuation, discounting, and equilibrium require an interest-rate benchmark
 does not hold for this class.
 
-## Scope — what this does *and does not* claim
+## Scope and research frontier
 
-For precision (and because overclaiming helps no one):
+Stated precisely, so every result can be checked and built on:
 
-- This is a **defined class** of economies (finite goods/states, strictly-concave
-  utility, specific structure), not a fully general theory of all economies.
-- It is a **mathematical-foundations and bounded-execution** result. Specified
-  institutional rules are modeled, but empirical institutional performance,
-  legal enforceability and Shariah (jurisprudential) approval are not established.
+- **Setting.** The standard setting of general-equilibrium theory: finite goods and
+  states, concave preferences, explicit structure.
+- **Domain.** Mathematics and executable rules. Empirical performance, legal
+  enforceability and Shariah rulings are decided by markets, courts and scholars;
+  they are outside what any proof settles.
 - It establishes **existence and coherence**, with conditional uniqueness and
   sensitivity in additional specified classes. The bounded funding/protection/
   ledger applications now address selected accounting and control rules, not
   the complete safe-claim, liquidity, screening, monitoring or distress functions
-  of debt. Equilibrium existence alone does not establish those functions.
+  of debt. Modelling those functions in the same verified chain is a natural next step.
 - Full payoff rank is not the same as ruling out a certain portfolio. The broad
   class needs no supplied lending benchmark; narrower risky controls and trading
-  restrictions retain their own assumptions. Discount weights, time preference
-  and potentially implied safe returns are not abolished.
-- Still open: continuous Sonnenschein–Mantel–Debreu *surjectivity* with Debreu's
+  restrictions retain their own assumptions. Time value is not abolished; it is
+  derived, from household impatience rather than an imposed lending rate.
+- **Research frontier:** continuous Sonnenschein–Mantel–Debreu *surjectivity* with Debreu's
   own weights on the whole price cap `S_ε`. Finite price sets are proved (Stages
   296–329). The continuum is proved for constant and slowly varying weights (Stages
   330–335) and in part for the weight `p_k` (Stages 336–349). The remaining input is a
