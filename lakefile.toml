@@ -68,5 +68,5 @@ roots = [
   "PerturbedWeight", "GridLimit", "WeightPkGlued", "BoundaryResolved",
   "MarginLemma", "WeightPkUnique", "WeightPkClosedCap", "GridCompact",
   "ShapeInterest", "OwnershipStability", "DerivedNeutrality", "DebreuAssembly",
-  "HeteroCRRADebt", "LipschitzObstruction",
+  "HeteroCRRADebt", "LipschitzObstruction", "HeterogeneousIssuance",
 ]

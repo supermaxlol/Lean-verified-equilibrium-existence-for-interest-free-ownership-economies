@@ -133,6 +133,22 @@ These results do not all favour profit sharing. They are reported, not hidden.
 - Price adjustment is stable under the weak axiom (Stages 255, 259), so there are known
   sufficient conditions.
 
+## 11. Where concentration comes from (Stage 356)
+
+The issuance equilibrium of Stage 263 assumed that everyone has the same patience, the same
+saving rate and the same access to new units. Stage 356 drops all three.
+
+- The units market still clears exactly, at a return of `1/B`, where `B` is the wealth-weighted
+  saving rate. Each household's post-trade share follows from clearing.
+- Under pro rata issuance, the most patient household's share tends to one and every other share
+  to zero. This holds for log utility and for CRRA with a common curvature, along any return path.
+- A household shut out of new issues is diluted towards zero.
+- Issuing part of new units equally to every household gives each one a floor in every period;
+  an excluded household keeps a long-run share near `σ/N`.
+
+So the issuance rule decides whether ownership concentrates, and differences in patience and
+access are what drive the concentration.
+
 ## Synthesis
 
 1. Interest is not needed for markets to work: equilibrium, time value, efficiency and
@@ -145,7 +161,9 @@ These results do not all favour profit sharing. They are reported, not hidden.
 5. The real costs of going interest-free are concrete: audit costs, agency rents, mean
    selection, and correlated risk that must be held as capital. Each has an instrument and
    a formula.
-6. Under automation, the decisive variable is how new ownership is issued.
+6. Under automation, the decisive variable is how new ownership is issued: with different
+   patience or access, pro rata issuance concentrates ownership, and an equal part keeps a floor
+   under every household (Stage 356).
 
 ## Where mathematics stops, and what comes next
 

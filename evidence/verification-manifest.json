@@ -1,6 +1,6 @@
 {
-  "release": "2026-11-15",
-  "latest_stage": 355,
+  "release": "2026-11-19",
+  "latest_stage": 356,
   "lean_version": "4.35.0",
   "nature": "Stages up to 249: source-identical accepted proofs and retained clean axiom logs. Stages 250+: each module compiled standalone and its clean axiom log retained. Not a fresh cold `lake build` of the whole library.",
   "dependency_revisions": {
@@ -15,8 +15,8 @@
     "Cli": "c24fe6078c630e89b489bffe59b3e20ac30d12c8",
     "fixed-point-theorems": "93a3eed3364281a9dbf9652bb52356a8db65057c"
   },
-  "module_count": 195,
-  "audited_endpoints": 2113,
+  "module_count": 196,
+  "audited_endpoints": 2138,
   "counts_are_not_distinct_discovery_counts": true,
   "modules": {
     "HeterogeneousOverlapBridge": {
@@ -4233,6 +4233,42 @@
         "LipschitzObstruction.unbounded_constants",
         "LipschitzObstruction.sqrt_not_lipschitz",
         "LipschitzObstruction.afriat_scale_vanishes"
+      ],
+      "compiled": "standalone `lake env lean` against the pinned Mathlib; no retained .olean"
+    },
+    "HeterogeneousIssuance": {
+      "stage": 356,
+      "title": "HETEROGENEOUS_ISSUANCE",
+      "source": "formal/HeterogeneousIssuance.lean",
+      "source_sha256": "8816d9b2d494d2063dfddc2eab1a51e468bb3bb926930f916d0530217fa0c43e",
+      "audit_log": "evidence/axioms/HeterogeneousIssuance.txt",
+      "audit_log_sha256": "959ab64ad3c058ac31e5880250cb8e1fc376e7e74fc361915af548058c850933",
+      "audited_declarations": [
+        "HeterogeneousIssuance.aggregate_demand",
+        "HeterogeneousIssuance.clearing_unique",
+        "HeterogeneousIssuance.clearing_exists",
+        "HeterogeneousIssuance.equilibrium_return",
+        "HeterogeneousIssuance.units_share",
+        "HeterogeneousIssuance.consumption_share_iff",
+        "HeterogeneousIssuance.B_ge",
+        "HeterogeneousIssuance.B_le",
+        "HeterogeneousIssuance.step_sum",
+        "HeterogeneousIssuance.reduces_to_common",
+        "HeterogeneousIssuance.excluded_step",
+        "HeterogeneousIssuance.floor_every_step",
+        "HeterogeneousIssuance.path_pos_sum",
+        "HeterogeneousIssuance.pro_rata_closed",
+        "HeterogeneousIssuance.ratio_bound",
+        "HeterogeneousIssuance.ratio_vanishes",
+        "HeterogeneousIssuance.most_patient_takes_all",
+        "HeterogeneousIssuance.log_takes_all",
+        "HeterogeneousIssuance.crra_ratio",
+        "HeterogeneousIssuance.crra_takes_all",
+        "HeterogeneousIssuance.excluded_dilution",
+        "HeterogeneousIssuance.low_tends",
+        "HeterogeneousIssuance.excluded_floor",
+        "HeterogeneousIssuance.excluded_floor_eventually",
+        "HeterogeneousIssuance.common_rate_level"
       ],
       "compiled": "standalone `lake env lean` against the pinned Mathlib; no retained .olean"
     }

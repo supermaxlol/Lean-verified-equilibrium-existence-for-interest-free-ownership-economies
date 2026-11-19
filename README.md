@@ -15,9 +15,13 @@ We proved that it can, and a computer checked every step.**
   someone issues a fixed claim and someone else buys it (Stage 354).
 - **The equilibrium is stable.** In the Cobb–Douglas case it is unique, and prices that start
   away from it move back to it (Stage 351).
+- **Where concentration comes from.** When households differ in patience, issuing new shares in
+  proportion to what people already own concentrates ownership on the most patient. A household
+  shut out of new issues is diluted towards zero. Issuing part of new shares equally to everyone
+  gives every household a floor (Stage 356).
 - **Payouts are exact.** Profit shares and fees are paid in a fixed order, to the last cent.
   No money is lost or created.
-- **Every step is machine-checked.** 195 Lean modules and 2,113 audited results. Each one uses
+- **Every step is machine-checked.** 196 Lean modules and 2,138 audited results. Each one uses
   only the three standard axioms of mathematics (`propext`, `Classical.choice`, `Quot.sound`).
 
 ## Why it matters
@@ -157,7 +161,7 @@ Interest-free finance is one instance. The result is secular and general.
   Price extraction / separating price. Production-economy structure.
   Continuous firm supply over a production set.
   Continuous Mantel surjectivity with Debreu's own weights and genuinely sequential incomplete-market
-  equilibrium remain open; see [the frontier note](docs/GE_FRONTIER_2026-11-06.md) and Stages 250–355 below.
+  equilibrium remain open; see [the frontier note](docs/GE_FRONTIER_2026-11-06.md) and Stages 250–356 below.
 
 The economic and pure executable core is **proved**; the database adapter is
 **tested under explicit storage/runtime assumptions**. Truthful physical evidence,
@@ -165,9 +169,9 @@ authentication, real custody, legal title and demonstrated social outcomes are
 not supplied by these results. See the [connected example](docs/CONNECTED_DEMO.md),
 [implementation contract](runtime/README.md) and [roadmap](docs/ROADMAP.md).
 
-## New in this release: Stages 250–355
+## New in this release: Stages 250–356
 
-105 further modules, 1195 further audited declarations. Each module was
+106 further modules, 1220 further audited declarations. Each module was
 compiled on its own against the pinned Mathlib, and its clean axiom log is retained. Per-stage
 statements and limits are in [`docs/stages/`](docs/stages/).
 
@@ -208,6 +212,13 @@ statements and limits are in [`docs/stages/`](docs/stages/).
   Innes's theorem: debt is optimal under MLRP (Stage 327). It marks where debt wins, and is reported, not hidden.
   Shape and interest are separable: holding the debt shape fixed, a premium above the zero-return face
   buys no surplus and no effort incentive; it is a transfer less verification cost (Stage 350).
+- **Different patience and unequal access (Stage 356, new in v2.3).**
+  The stage-263 issuance equilibrium without its uniformity assumptions: each household has its own
+  saving rate, and only some have access to the pro rata part of new issues. The market clears at
+  `Q = B D/(1 − B)` with return `1/B`, where `B` is the wealth-weighted saving rate. Under pro rata
+  issuance the most patient household's share tends to one (log utility, and CRRA with a common `γ`).
+  An excluded household is diluted towards zero unless part of issuance is equal; then every household
+  keeps a floor, `σ/N` under common patience. With common patience and full access it is exactly stage 263.
 - **Sonnenschein–Mantel–Debreu (Stages 262, 287, 292, 296, 300, 302, 306–307, 312, 316, 323–326, 328–349, 353, 355).**
   - Finite price sets: **proved**. Continuous, strictly concave utilities with unique demand, with endowments
     (Stages 296, 300, 326, 329).
@@ -239,7 +250,7 @@ revealed preference. See
 
 ## What this contribution is
 
-This repository is a **sealed 195-module Lean formalization**, SHA-audited and kept to
+This repository is a **sealed 196-module Lean formalization**, SHA-audited and kept to
 standard foundations. It answers, with machine-checked proof, two questions the
 literature has left open or blurred together:
 
@@ -421,7 +432,7 @@ lake build                      # build foundation and extension libraries
 - `GEOverlap.lean` — the full development.
 - `AXIOM_AUDIT.txt` — the axiom audit (every theorem: `[propext, Classical.choice, Quot.sound]`).
 - `SEAL_GND.json` — historical foundations snapshot, not the latest gap ledger.
-- `formal/` — accepted productive-ownership extension sources (Stages 183–249 and 250–355).
+- `formal/` — accepted productive-ownership extension sources (Stages 183–249 and 250–356).
 - `docs/stages/` — statement and limits of each stage from 250 on.
 - `evidence/verification-manifest.json` — portable module/stage/hash inventory.
 - `evidence/axioms/` — clean retained extension compiler/axiom logs.
