@@ -1,0 +1,8 @@
+'WealthSavingContraction.step_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'WealthSavingContraction.post_lip' depends on axioms: [propext, Classical.choice, Quot.sound]
+'WealthSavingContraction.T_lip' depends on axioms: [propext, Classical.choice, Quot.sound]
+'WealthSavingContraction.T_maps' depends on axioms: [propext, Classical.choice, Quot.sound]
+'WealthSavingContraction.wealth_saving_contraction' depends on axioms: [propext, Classical.choice, Quot.sound]
+'WealthSavingContraction.example_converges' depends on axioms: [propext, Classical.choice, Quot.sound]
+'WealthSavingContraction.no_contraction_of_two_rest' depends on axioms: [propext, Classical.choice, Quot.sound]
+'WealthSavingContraction.stage365_rule_fails' depends on axioms: [propext, Classical.choice, Quot.sound]

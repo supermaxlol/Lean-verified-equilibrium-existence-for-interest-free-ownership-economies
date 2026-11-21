@@ -1,0 +1,6 @@
+'PathUniquenessH2.slope_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PathUniquenessH2.curve_deriv' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PathUniquenessH2.curve_exists' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PathUniquenessH2.resid_strictMono' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PathUniquenessH2.eq_facts' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PathUniquenessH2.unique_h2' depends on axioms: [propext, Classical.choice, Quot.sound]

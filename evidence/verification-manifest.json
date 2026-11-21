@@ -1,6 +1,6 @@
 {
-  "release": "2026-11-19",
-  "latest_stage": 356,
+  "release": "2026-11-20",
+  "latest_stage": 387,
   "lean_version": "4.35.0",
   "nature": "Stages up to 249: source-identical accepted proofs and retained clean axiom logs. Stages 250+: each module compiled standalone and its clean axiom log retained. Not a fresh cold `lake build` of the whole library.",
   "dependency_revisions": {
@@ -15,8 +15,8 @@
     "Cli": "c24fe6078c630e89b489bffe59b3e20ac30d12c8",
     "fixed-point-theorems": "93a3eed3364281a9dbf9652bb52356a8db65057c"
   },
-  "module_count": 196,
-  "audited_endpoints": 2138,
+  "module_count": 227,
+  "audited_endpoints": 2484,
   "counts_are_not_distinct_discovery_counts": true,
   "modules": {
     "HeterogeneousOverlapBridge": {
@@ -4271,6 +4271,662 @@
         "HeterogeneousIssuance.common_rate_level"
       ],
       "compiled": "standalone `lake env lean` against the pinned Mathlib; no retained .olean"
+    },
+    "LongRunOwnership": {
+      "stage": 357,
+      "title": "LONG_RUN_OWNERSHIP",
+      "source": "formal/LongRunOwnership.lean",
+      "source_sha256": "a005e561daf79c3e68abed9a64564f51a1411d63fc0b64e796f5ab74a36ef370",
+      "audit_log": "evidence/axioms/LongRunOwnership.txt",
+      "audit_log_sha256": "4ef302fabb9ecdc9197f0aa412e563d4f04ca3c66224cee8be0eee8deec2e1d6",
+      "audited_declarations": [
+        "LongRunOwnership.step_full",
+        "LongRunOwnership.stationary_exists",
+        "LongRunOwnership.stationary_lB",
+        "LongRunOwnership.stationary_fixed",
+        "LongRunOwnership.fixed_form",
+        "LongRunOwnership.stationary_unique",
+        "LongRunOwnership.stationary_floor",
+        "LongRunOwnership.stationary_monotone",
+        "LongRunOwnership.stationary_l_pos",
+        "LongRunOwnership.common_stationary",
+        "LongRunOwnership.pathA_pos_sum",
+        "LongRunOwnership.above_nonempty",
+        "LongRunOwnership.trapped",
+        "LongRunOwnership.trapped_decay",
+        "LongRunOwnership.pathA_low",
+        "LongRunOwnership.escape",
+        "LongRunOwnership.common_dichotomy",
+        "LongRunOwnership.growth_gap",
+        "LongRunOwnership.growth_gap_lower",
+        "LongRunOwnership.common_no_cost",
+        "LongRunOwnership.pro_rata_growth_limit",
+        "LongRunOwnership.stationary_return",
+        "LongRunOwnership.fut_recursion",
+        "LongRunOwnership.recursion_unique",
+        "LongRunOwnership.fut_compare",
+        "LongRunOwnership.save_ratio",
+        "LongRunOwnership.forward_takes_all"
+      ]
+    },
+    "RamseyOwnership": {
+      "stage": 358,
+      "title": "RAMSEY_OWNERSHIP",
+      "source": "formal/RamseyOwnership.lean",
+      "source_sha256": "a30b89a5ea3fa22d512a876027d642e07704028f32fb8b64062698cecc66d24b",
+      "audit_log": "evidence/axioms/RamseyOwnership.txt",
+      "audit_log_sha256": "413b139eedb8c4a3cbf819e45f7e93720e29049f1751a36a3e87e154d806c764",
+      "audited_declarations": [
+        "RamseyOwnership.ramsey_log",
+        "RamseyOwnership.ramsey_crra",
+        "RamseyOwnership.ramsey_example",
+        "RamseyOwnership.ownership_clearing",
+        "RamseyOwnership.ownership_pays_ramsey",
+        "RamseyOwnership.ownership_real",
+        "RamseyOwnership.fisher_real",
+        "RamseyOwnership.fisher_example_deflation",
+        "RamseyOwnership.hyperinflation_example",
+        "RamseyOwnership.cash_dominated"
+      ]
+    },
+    "ControlInheritance": {
+      "stage": 359,
+      "title": "CONTROL_INHERITANCE",
+      "source": "formal/ControlInheritance.lean",
+      "source_sha256": "5cb72d5098d71f0afe96587478a25d6868f3588132bdf9e479c86738067101a6",
+      "audit_log": "evidence/axioms/ControlInheritance.txt",
+      "audit_log_sha256": "39b89ff6a71436b54516adfad3bf206b59c95532f3ac0fbcae2dd4b256f2c55e",
+      "audited_declarations": [
+        "ControlInheritance.coalition_next",
+        "ControlInheritance.coalition_dev",
+        "ControlInheritance.majority_dissolves",
+        "ControlInheritance.majority_gone_at",
+        "ControlInheritance.pro_rata_majority_persists",
+        "ControlInheritance.estate_split",
+        "ControlInheritance.dynasty_converges"
+      ]
+    },
+    "CapacityDistribution": {
+      "stage": 360,
+      "title": "CAPACITY_DISTRIBUTION",
+      "source": "formal/CapacityDistribution.lean",
+      "source_sha256": "835fcf8f9c9ad4f570e758dd714813cc436156bd43f2797c5b596d07c046c9d1",
+      "audit_log": "evidence/axioms/CapacityDistribution.txt",
+      "audit_log_sha256": "6ec29fa5b00438be65f98421d38c9b2f9f00b2e3269720d0ea0531a3438e120f",
+      "audited_declarations": [
+        "CapacityDistribution.capacity_path",
+        "CapacityDistribution.saving_bounds",
+        "CapacityDistribution.common_patience_neutral",
+        "CapacityDistribution.saving_diff",
+        "CapacityDistribution.growth_cost_bound",
+        "CapacityDistribution.growth_cost_floor"
+      ]
+    },
+    "ShockSharing": {
+      "stage": 361,
+      "title": "SHOCK_SHARING",
+      "source": "formal/ShockSharing.lean",
+      "source_sha256": "d03ef427f5d777480b1b597adc6543f14fd10940ae234d420511575ae16debb6",
+      "audit_log": "evidence/axioms/ShockSharing.txt",
+      "audit_log_sha256": "f2ef32f3c03215bb65aa221afc7392a6baeeeb2f9a380b28c516b6c9947dd5b8",
+      "audited_declarations": [
+        "ShockSharing.equity_conserves",
+        "ShockSharing.debt_conserves",
+        "ShockSharing.equity_proportional",
+        "ShockSharing.debt_shifts_to_entrepreneur",
+        "ShockSharing.small_loss_all_on_entrepreneur",
+        "ShockSharing.debt_wipeout",
+        "ShockSharing.equity_survives"
+      ]
+    },
+    "DiminishingWelfare": {
+      "stage": 362,
+      "title": "DIMINISHING_WELFARE",
+      "source": "formal/DiminishingWelfare.lean",
+      "source_sha256": "62a875fbbeddfc0b35c55f2682ceb68a3f0a7b5c635cab5d49c86f17a2e0b9ac",
+      "audit_log": "evidence/axioms/DiminishingWelfare.txt",
+      "audit_log_sha256": "c5a8d1cc0c7f428ce16720f4984dbf63c3351675088959b42fde43616081f209",
+      "audited_declarations": [
+        "DiminishingWelfare.pigou_dalton",
+        "DiminishingWelfare.equal_maximises",
+        "DiminishingWelfare.concentrated_worse",
+        "DiminishingWelfare.concentration_limit",
+        "DiminishingWelfare.concentration_eventually_worse",
+        "DiminishingWelfare.floor_welfare"
+      ]
+    },
+    "OwnershipDynamics": {
+      "stage": 363,
+      "title": "OWNERSHIP_DYNAMICS",
+      "source": "formal/OwnershipDynamics.lean",
+      "source_sha256": "ef17f6a459e022230dcf992784fd652f8daeb1b594870ca59082d01b961f225c",
+      "audit_log": "evidence/axioms/OwnershipDynamics.txt",
+      "audit_log_sha256": "d6de4ad1340e0c0c5771da2304fd8a225d9f3a5c0103dbb4a24444d20fd911e9",
+      "audited_declarations": [
+        "OwnershipDynamics.pair_bound",
+        "OwnershipDynamics.contract_step",
+        "OwnershipDynamics.orbit_ratio",
+        "OwnershipDynamics.dist_bound",
+        "OwnershipDynamics.converges",
+        "OwnershipDynamics.exists_K0",
+        "OwnershipDynamics.converges_tendsto",
+        "OwnershipDynamics.fixed_unique",
+        "OwnershipDynamics.fut_const",
+        "OwnershipDynamics.fsave_const",
+        "OwnershipDynamics.log_equilibrium",
+        "OwnershipDynamics.log_equilibrium_unique",
+        "OwnershipDynamics.log_equilibrium_converges",
+        "OwnershipDynamics.steady_equilibrium",
+        "OwnershipDynamics.steady_condition",
+        "OwnershipDynamics.rank_preserved",
+        "OwnershipDynamics.threshold_equalizes",
+        "OwnershipDynamics.ex_equal_rest",
+        "OwnershipDynamics.ex_unequal_rest"
+      ]
+    },
+    "FiniteHorizonPath": {
+      "stage": 364,
+      "title": "FINITE_HORIZON_PATH",
+      "source": "formal/FiniteHorizonPath.lean",
+      "source_sha256": "ad9e8c650b84e3b4811a5071a0414feef21dcbd893a15fc310b2bc552d565ac5",
+      "audit_log": "evidence/axioms/FiniteHorizonPath.txt",
+      "audit_log_sha256": "93cf845a98aed02065250517362c6c77a56dd2704b4396e061d24a9a6f63a6c8",
+      "audited_declarations": [
+        "FiniteHorizonPath.euler",
+        "FiniteHorizonPath.terminal",
+        "FiniteHorizonPath.sav_lower",
+        "FiniteHorizonPath.T_sum",
+        "FiniteHorizonPath.cont_sav",
+        "FiniteHorizonPath.exists_finite_equilibrium",
+        "FiniteHorizonPath.finite_equilibrium",
+        "FiniteHorizonPath.F_sum",
+        "FiniteHorizonPath.FInf_rec",
+        "FiniteHorizonPath.Fc_trunc",
+        "FiniteHorizonPath.cont_Fc",
+        "FiniteHorizonPath.infinite_equilibrium_of",
+        "FiniteHorizonPath.infinite_equilibrium",
+        "FiniteHorizonPath.infinite_equilibrium_low"
+      ]
+    },
+    "EndogenousRest": {
+      "stage": 365,
+      "title": "ENDOGENOUS_REST",
+      "source": "formal/EndogenousRest.lean",
+      "source_sha256": "0b9d9bb441c99cbd5ca93a5e7f83854b054040dfa62127e4a988bcb82184b30b",
+      "audit_log": "evidence/axioms/EndogenousRest.txt",
+      "audit_log_sha256": "b9d2b9b222d10fc820eddee45c4f580fce5f130bdfa462b12a221d2d6afdc68c",
+      "audited_declarations": [
+        "EndogenousRest.convex_Simp",
+        "EndogenousRest.compact_Simp",
+        "EndogenousRest.step_sum",
+        "EndogenousRest.step_floor",
+        "EndogenousRest.exists_rest",
+        "EndogenousRest.exists_rest_patience",
+        "EndogenousRest.exists_rest_access",
+        "EndogenousRest.stationary_rule",
+        "EndogenousRest.exists_stationary_forward",
+        "EndogenousRest.φc_cont",
+        "EndogenousRest.φc_mono",
+        "EndogenousRest.two_rest_continuous"
+      ]
+    },
+    "IncompleteExistence": {
+      "stage": 366,
+      "title": "INCOMPLETE_EXISTENCE",
+      "source": "formal/IncompleteExistence.lean",
+      "source_sha256": "16af373d4e1417269d43d9af3418978f8c30cbdb136abe2d90912199d7bdf849",
+      "audit_log": "evidence/axioms/IncompleteExistence.txt",
+      "audit_log_sha256": "e1d0968d357e1779ced20bbe832944b6d111a00f6e86ac3cd04a5d09a909b9f7",
+      "audited_declarations": [
+        "IncompleteExistence.g_anti",
+        "IncompleteExistence.optimal",
+        "IncompleteExistence.small_delta",
+        "IncompleteExistence.exists_neg",
+        "IncompleteExistence.exists_pos",
+        "IncompleteExistence.exists_zero",
+        "IncompleteExistence.dem_continuous",
+        "IncompleteExistence.tilted_mem",
+        "IncompleteExistence.w_le_dem",
+        "IncompleteExistence.dem_le_w",
+        "IncompleteExistence.exists_equilibrium"
+      ]
+    },
+    "RestConvergence": {
+      "stage": 367,
+      "title": "REST_CONVERGENCE",
+      "source": "formal/RestConvergence.lean",
+      "source_sha256": "f123aed86d117c957cf54850ec07fe50881e185dcb04c8cdcdebf33226f25bd9",
+      "audit_log": "evidence/axioms/RestConvergence.txt",
+      "audit_log_sha256": "ad97f64653341b32350984f3dc63829bf1f12793ffcf7c1d76d9a82cdd8f94a4",
+      "audited_declarations": [
+        "RestConvergence.iterate_rate",
+        "RestConvergence.contraction_rest",
+        "RestConvergence.affR_dist",
+        "RestConvergence.affine_rest",
+        "RestConvergence.isClosed_Simp",
+        "RestConvergence.step_common",
+        "RestConvergence.affR_maps",
+        "RestConvergence.common_patience_converges"
+      ]
+    },
+    "ThresholdRest": {
+      "stage": 368,
+      "title": "THRESHOLD_REST",
+      "source": "formal/ThresholdRest.lean",
+      "source_sha256": "b7bbef8b98f77ab84f575568fa03d312677f7022ec2b60217aa0493fe174d510",
+      "audit_log": "evidence/axioms/ThresholdRest.txt",
+      "audit_log_sha256": "0d007f791b31b526cdc791ce1d2c0bbfac792e785b5c30a210703f072905629e",
+      "audited_declarations": [
+        "ThresholdRest.fixed_greatest",
+        "ThresholdRest.fixed_least",
+        "ThresholdRest.F_add_F2",
+        "ThresholdRest.F_mono",
+        "ThresholdRest.exists_rest_monotone",
+        "ThresholdRest.rest_floor",
+        "ThresholdRest.exists_rest_threshold",
+        "ThresholdRest.exists_rest_all_or_nothing",
+        "ThresholdRest.two_rest_threshold"
+      ]
+    },
+    "OLGMoney": {
+      "stage": 369,
+      "title": "OLGMONEY",
+      "source": "formal/OLGMoney.lean",
+      "source_sha256": "1477daf3a8f1a895d2e964c9425948953c7d5e59829c69c132f0b030b7e9fe1a",
+      "audit_log": "evidence/axioms/OLGMoney.txt",
+      "audit_log_sha256": "8c1c7d08e4020aac5231ea3007c6150a39adb83e1331e9d55204fea167de628c",
+      "audited_declarations": [
+        "OLGMoney.price_clears",
+        "OLGMoney.price_return",
+        "OLGMoney.E_anti",
+        "OLGMoney.strict_opt",
+        "OLGMoney.optimal",
+        "OLGMoney.root_unique",
+        "OLGMoney.exists_root",
+        "OLGMoney.euler_of_eq",
+        "OLGMoney.exists_iff",
+        "OLGMoney.mon_eq_unique",
+        "OLGMoney.welfare"
+      ]
+    },
+    "PathUniqueness": {
+      "stage": 370,
+      "title": "PATH_UNIQUENESS",
+      "source": "formal/PathUniqueness.lean",
+      "source_sha256": "205425021172dcc4c41f92d99f96e31beed9fd19f30bbf477a8a88bdce6d5757",
+      "audit_log": "evidence/axioms/PathUniqueness.txt",
+      "audit_log_sha256": "7b128d9f1d18692b6927bc820256c743ae48bfe88546797780d29a4f63a8317a",
+      "audited_declarations": [
+        "PathUniqueness.qs_eq",
+        "PathUniqueness.date_unique_common",
+        "PathUniqueness.date_unique",
+        "PathUniqueness.unique_log",
+        "PathUniqueness.unique_common",
+        "PathUniqueness.date_unique_path",
+        "PathUniqueness.unique_one_period"
+      ]
+    },
+    "MultiAssetGEI": {
+      "stage": 371,
+      "title": "MULTI_ASSET_GEI",
+      "source": "formal/MultiAssetGEI.lean",
+      "source_sha256": "e80bdb2009003e2c22d681fdd1af8890c2f31175e5e177189c1e1d384d27793d",
+      "audit_log": "evidence/axioms/MultiAssetGEI.txt",
+      "audit_log_sha256": "c8f39e13b4008871cb5701644e0659f3a38260f90752fce5e3e7d6b85cf1a771",
+      "audited_declarations": [
+        "MultiAssetGEI.concave_lt",
+        "MultiAssetGEI.cost_mu",
+        "MultiAssetGEI.euler_sufficient",
+        "MultiAssetGEI.unique_optimum",
+        "MultiAssetGEI.euler_necessary",
+        "MultiAssetGEI.state_prices",
+        "MultiAssetGEI.exists_equilibrium_common"
+      ]
+    },
+    "ContinuousMantel": {
+      "stage": 372,
+      "title": "CONTINUOUS_MANTEL",
+      "source": "formal/ContinuousMantel.lean",
+      "source_sha256": "27b7b77ac668443cd512de5c44f11be46ad75d2977ed43aadb00ec369a309f50",
+      "audit_log": "evidence/axioms/ContinuousMantel.txt",
+      "audit_log_sha256": "b0e250ea374b1984caa09e4c9eab65d866137de51ea90625eb69849717a1bde2",
+      "audited_declarations": [
+        "ContinuousMantel.dot_le_one",
+        "ContinuousMantel.dot_eq_one",
+        "ContinuousMantel.decomp",
+        "ContinuousMantel.budget",
+        "ContinuousMantel.trade_continuousOn",
+        "ContinuousMantel.step_lt",
+        "ContinuousMantel.warp",
+        "ContinuousMantel.trade_injOn",
+        "ContinuousMantel.no_cycle",
+        "ContinuousMantel.rationalised",
+        "ContinuousMantel.positive_weight",
+        "ContinuousMantel.continuous_decomposition"
+      ]
+    },
+    "PathUniquenessHetero": {
+      "stage": 373,
+      "title": "PATH_UNIQUENESS_HETERO",
+      "source": "formal/PathUniquenessHetero.lean",
+      "source_sha256": "d4d695f03d9cfd46211cddea49d970f9c14e9c4804566c450517bde30125c7dd",
+      "audit_log": "evidence/axioms/PathUniquenessHetero.txt",
+      "audit_log_sha256": "ede2b079007b366073149426aaa7173fe7eea08c59930444ba66a936007caa2f",
+      "audited_declarations": [
+        "PathUniquenessHetero.I_lower",
+        "PathUniquenessHetero.I_upper",
+        "PathUniquenessHetero.reduce",
+        "PathUniquenessHetero.date0_unique",
+        "PathUniquenessHetero.no_lt",
+        "PathUniquenessHetero.reduced_unique",
+        "PathUniquenessHetero.unique_two_period",
+        "PathUniquenessHetero.band",
+        "PathUniquenessHetero.unique_two_period_band"
+      ]
+    },
+    "ContinuousRationalisation": {
+      "stage": 374,
+      "title": "CONTINUOUS_RATIONALISATION",
+      "source": "formal/ContinuousRationalisation.lean",
+      "source_sha256": "144c0e2334874282ef97f22908729daa6e48618252b90abba9754ed23f5c1d01",
+      "audit_log": "evidence/axioms/ContinuousRationalisation.txt",
+      "audit_log_sha256": "1fe49ce40ae34409750ee9f65406380912eda507dbdba4f40525101703419204",
+      "audited_declarations": [
+        "ContinuousRationalisation.decomp",
+        "ContinuousRationalisation.Up_convex",
+        "ContinuousRationalisation.Up_mono",
+        "ContinuousRationalisation.not_mem_below",
+        "ContinuousRationalisation.tau_trade",
+        "ContinuousRationalisation.optimal",
+        "ContinuousRationalisation.monotone_util",
+        "ContinuousRationalisation.quasiconcave",
+        "ContinuousRationalisation.coord_ge",
+        "ContinuousRationalisation.unique",
+        "ContinuousRationalisation.continuous_mantel_utility"
+      ]
+    },
+    "MultiAssetHetero": {
+      "stage": 375,
+      "title": "MULTI_ASSET_HETERO",
+      "source": "formal/MultiAssetHetero.lean",
+      "source_sha256": "877db6ac4440c5b0ed683cfe995cb4bf04d05ae29a19603b7b48f0c5c076485f",
+      "audit_log": "evidence/axioms/MultiAssetHetero.txt",
+      "audit_log_sha256": "1d4749b8d3e5d7eaa19b359b90ff1f496e85572d9cf27d73ba5acbed043d8907",
+      "audited_declarations": [
+        "MultiAssetHetero.F_lt",
+        "MultiAssetHetero.root_exists",
+        "MultiAssetHetero.mu_continuous",
+        "MultiAssetHetero.walras",
+        "MultiAssetHetero.exists_weights",
+        "MultiAssetHetero.exists_ad_equilibrium",
+        "MultiAssetHetero.exists_equilibrium_complete"
+      ]
+    },
+    "WealthSavingContraction": {
+      "stage": 376,
+      "title": "WEALTH_SAVING_CONTRACTION",
+      "source": "formal/WealthSavingContraction.lean",
+      "source_sha256": "e099ff5c6d6c2f1bcad8ea158dd48233316ae8106480117e0d8c3854acbf6785",
+      "audit_log": "evidence/axioms/WealthSavingContraction.txt",
+      "audit_log_sha256": "bd39d2e0873f2578b1aee06a5fbcfa9d0bcf3392c3bef7ba153d3777fed25ee4",
+      "audited_declarations": [
+        "WealthSavingContraction.step_eq",
+        "WealthSavingContraction.post_lip",
+        "WealthSavingContraction.T_lip",
+        "WealthSavingContraction.T_maps",
+        "WealthSavingContraction.wealth_saving_contraction",
+        "WealthSavingContraction.example_converges",
+        "WealthSavingContraction.no_contraction_of_two_rest",
+        "WealthSavingContraction.stage365_rule_fails"
+      ]
+    },
+    "EndogenousMoney": {
+      "stage": 377,
+      "title": "ENDOGENOUS_MONEY",
+      "source": "formal/EndogenousMoney.lean",
+      "source_sha256": "d29713e4253c3851f504eef3f689cd16f04958d1cc379376b75635d38b94e7ee",
+      "audit_log": "evidence/axioms/EndogenousMoney.txt",
+      "audit_log_sha256": "bb994402a7efd46bfba818ad0b89f9c2d23d291a63fb9ed735fdddbbc0353519",
+      "audited_declarations": [
+        "EndogenousMoney.young_balances",
+        "EndogenousMoney.price_return",
+        "EndogenousMoney.own_money",
+        "EndogenousMoney.transfer_value",
+        "EndogenousMoney.old_total",
+        "EndogenousMoney.eq_iff",
+        "EndogenousMoney.exists_iff",
+        "EndogenousMoney.eq_unique",
+        "EndogenousMoney.balances_anti",
+        "EndogenousMoney.golden_rule",
+        "EndogenousMoney.feedback_exists",
+        "EndogenousMoney.feedback_unique"
+      ]
+    },
+    "PathUniquenessN": {
+      "stage": 378,
+      "title": "PATH_UNIQUENESS_N",
+      "source": "formal/PathUniquenessN.lean",
+      "source_sha256": "dc15ec1b2a2fbae4707ae2c0a50ccaae1f6dbde62a899fad0e87db821179c596",
+      "audit_log": "evidence/axioms/PathUniquenessN.txt",
+      "audit_log_sha256": "7244b32e0a3d43e4a4b8e782d4e060311f7c308beb09857e37479188da047d5d",
+      "audited_declarations": [
+        "PathUniquenessN.F_ratio",
+        "PathUniquenessN.rpow_ratio",
+        "PathUniquenessN.sav_ratio",
+        "PathUniquenessN.clear",
+        "PathUniquenessN.x_nonneg",
+        "PathUniquenessN.step",
+        "PathUniquenessN.date_step",
+        "PathUniquenessN.propagate",
+        "PathUniquenessN.unique_N",
+        "PathUniquenessN.unique_N_band",
+        "PathUniquenessN.unique_three_period"
+      ]
+    },
+    "ContinuousUtility": {
+      "stage": 379,
+      "title": "CONTINUOUS_UTILITY",
+      "source": "formal/ContinuousUtility.lean",
+      "source_sha256": "7aa5cb0269df506d3271789dba7c84d7266729e2bb0c59ff4e9601a9409058e7",
+      "audit_log": "evidence/axioms/ContinuousUtility.txt",
+      "audit_log_sha256": "8a4e8ae078b04f8fb0224ffed396e15e9e201ce5710029b3ae0438eb246acf8b",
+      "audited_declarations": [
+        "ContinuousUtility.decomp",
+        "ContinuousUtility.W_convex",
+        "ContinuousUtility.W_mono",
+        "ContinuousUtility.W_below",
+        "ContinuousUtility.tau2_lip",
+        "ContinuousUtility.util2_continuous",
+        "ContinuousUtility.tau2_trade",
+        "ContinuousUtility.optimal2",
+        "ContinuousUtility.monotone_util2",
+        "ContinuousUtility.quasiconcave2",
+        "ContinuousUtility.coord_ge2",
+        "ContinuousUtility.unique2",
+        "ContinuousUtility.continuous_mantel_utility",
+        "ContinuousUtility.continuous_mantel_endowments"
+      ]
+    },
+    "IncompleteMultiAsset": {
+      "stage": 380,
+      "title": "INCOMPLETE_MULTI_ASSET",
+      "source": "formal/IncompleteMultiAsset.lean",
+      "source_sha256": "579a1bfd02d97274208f2414ec579aa388e3112f1884fc2bc04bdf8a301ec9f9",
+      "audit_log": "evidence/axioms/IncompleteMultiAsset.txt",
+      "audit_log_sha256": "3d7d3cf4e2cf5e9a9bdd274810e7e08aeca4961c61ce4d6fbb8ce03515df36c8",
+      "audited_declarations": [
+        "IncompleteMultiAsset.concave_lt",
+        "IncompleteMultiAsset.mid_strict",
+        "IncompleteMultiAsset.deriv_nonpos",
+        "IncompleteMultiAsset.isClosed_Mset",
+        "IncompleteMultiAsset.K_compact",
+        "IncompleteMultiAsset.V_diff_le",
+        "IncompleteMultiAsset.exists_optimum",
+        "IncompleteMultiAsset.optimum_payoff_unique",
+        "IncompleteMultiAsset.portfolio_unique",
+        "IncompleteMultiAsset.exists_unique_optimum"
+      ]
+    },
+    "MoneyTransition": {
+      "stage": 381,
+      "title": "MONEY_TRANSITION",
+      "source": "formal/MoneyTransition.lean",
+      "source_sha256": "c13fcc189319b561718862ca868ad467c8209dcf84ce6668e8151d61026d216c",
+      "audit_log": "evidence/axioms/MoneyTransition.txt",
+      "audit_log_sha256": "d5675c142b0cccd62199fc0227fe024b96bd78869e9c0c54876e4252af747060",
+      "audited_declarations": [
+        "MoneyTransition.Bv_strictMono",
+        "MoneyTransition.path_euler",
+        "MoneyTransition.stat_iff",
+        "MoneyTransition.stat_unique",
+        "MoneyTransition.sign_below",
+        "MoneyTransition.sign_above",
+        "MoneyTransition.next_unique",
+        "MoneyTransition.next_exists_iff",
+        "MoneyTransition.path_below",
+        "MoneyTransition.path_ret_below",
+        "MoneyTransition.no_path_above",
+        "MoneyTransition.path_classify",
+        "MoneyTransition.path_exists",
+        "MoneyTransition.next_mono_mu"
+      ]
+    },
+    "IncompleteMarketsExistence": {
+      "stage": 382,
+      "title": "INCOMPLETE_MARKETS_EXISTENCE",
+      "source": "formal/IncompleteMarketsExistence.lean",
+      "source_sha256": "6daf6e3040a05d15bf260ba524de883fcb03913cbde5b08c342b3e0c98283d7b",
+      "audit_log": "evidence/axioms/IncompleteMarketsExistence.txt",
+      "audit_log_sha256": "9d01d3729c7dd3032b0a8a0b68bb639138b2d3b99f31df4b4e57f393a89120ed",
+      "audited_declarations": [
+        "IncompleteMarketsExistence.exists_optimum",
+        "IncompleteMarketsExistence.optimum_payoff_unique",
+        "IncompleteMarketsExistence.opt_exists",
+        "IncompleteMarketsExistence.opt_unique",
+        "IncompleteMarketsExistence.opt_le",
+        "IncompleteMarketsExistence.opt_floor",
+        "IncompleteMarketsExistence.V_contAt",
+        "IncompleteMarketsExistence.dem_spec",
+        "IncompleteMarketsExistence.dem_continuousAt",
+        "IncompleteMarketsExistence.budget_binds",
+        "IncompleteMarketsExistence.walras",
+        "IncompleteMarketsExistence.equilibrium_of_payoff_clearing",
+        "IncompleteMarketsExistence.equilibrium_of_zero_excess"
+      ]
+    },
+    "PathUniquenessGS": {
+      "stage": 383,
+      "title": "PATH_UNIQUENESS_GS",
+      "source": "formal/PathUniquenessGS.lean",
+      "source_sha256": "50c6584bab3ee35b99e95b26fabf1d309f6b807dcf27934202fa3b343f7d86fd",
+      "audit_log": "evidence/axioms/PathUniquenessGS.txt",
+      "audit_log_sha256": "92622ddbbacb032a69ae15dbd7c075c2974d78dccf53cd101e27416c86805868",
+      "audited_declarations": [
+        "PathUniquenessGS.ex_nonneg",
+        "PathUniquenessGS.F_mono",
+        "PathUniquenessGS.savN_mono",
+        "PathUniquenessGS.x_nonneg",
+        "PathUniquenessGS.date_eq",
+        "PathUniquenessGS.ordered_unique",
+        "PathUniquenessGS.no_higher_path",
+        "PathUniquenessGS.unique_log"
+      ]
+    },
+    "MoneyDynamics": {
+      "stage": 384,
+      "title": "MONEY_DYNAMICS",
+      "source": "formal/MoneyDynamics.lean",
+      "source_sha256": "1d39060e743920a25f921d2b2b1912b3b888b99bfacaffb466ab4441e75bb7f0",
+      "audit_log": "evidence/axioms/MoneyDynamics.txt",
+      "audit_log_sha256": "5481ff2510290a1e5994984aad6cd515f16446880d93667ee33b23cf258e5eb3",
+      "audited_declarations": [
+        "MoneyDynamics.Bv_unbounded",
+        "MoneyDynamics.fwd_existsUnique",
+        "MoneyDynamics.fwd_function",
+        "MoneyDynamics.fwd_exists_one",
+        "MoneyDynamics.fwd_exists_one_iff",
+        "MoneyDynamics.Av_strictMono",
+        "MoneyDynamics.Av_hasDeriv",
+        "MoneyDynamics.Bv_hasDeriv",
+        "MoneyDynamics.slope_eq",
+        "MoneyDynamics.fwd_slope",
+        "MoneyDynamics.Dd_pos_of_le_one",
+        "MoneyDynamics.Dd_neg_iff",
+        "MoneyDynamics.one_lt_of_Dd_neg",
+        "MoneyDynamics.slope_gt_one",
+        "MoneyDynamics.slope_neg",
+        "MoneyDynamics.slope_flip_iff",
+        "MoneyDynamics.slope_flip_of_le_two",
+        "MoneyDynamics.fwd_slope_gt_one",
+        "MoneyDynamics.fwd_slope_neg",
+        "MoneyDynamics.infl_path",
+        "MoneyDynamics.infl_strictMono",
+        "MoneyDynamics.infl_limit",
+        "MoneyDynamics.infl_limit_gt",
+        "MoneyDynamics.antitone_path_zero",
+        "MoneyDynamics.infl_below",
+        "MoneyDynamics.Av_surj",
+        "MoneyDynamics.back_existsUnique",
+        "MoneyDynamics.Bv_two_example",
+        "MoneyDynamics.fwd_multivalued",
+        "MoneyDynamics.cycle_path"
+      ]
+    },
+    "MoneyCycles": {
+      "stage": 385,
+      "title": "MONEY_CYCLES",
+      "source": "formal/MoneyCycles.lean",
+      "source_sha256": "a80267c953a00c44cd4075934b3358c50da9e209a44ff40b310624d78141a8dd",
+      "audit_log": "evidence/axioms/MoneyCycles.txt",
+      "audit_log_sha256": "e650eaacd484dfba2f497f2f02d81bc8b1ec07601ae228f80c8a4dd129e9a885",
+      "audited_declarations": [
+        "MoneyCycles.stat_unique",
+        "MoneyCycles.Ai_continuousAt",
+        "MoneyCycles.Ai_hasDeriv",
+        "MoneyCycles.hb_continuousAt",
+        "MoneyCycles.hb_hasDeriv",
+        "MoneyCycles.pos_right_of_deriv",
+        "MoneyCycles.two_cycle_exists",
+        "MoneyCycles.example_stat",
+        "MoneyCycles.example_cycle"
+      ]
+    },
+    "IncompleteNegishi": {
+      "stage": 386,
+      "title": "INCOMPLETE_NEGISHI",
+      "source": "formal/IncompleteNegishi.lean",
+      "source_sha256": "71974c39fc4b3c99e1487e0ea6e7741731fb62a0a460aba913b34ac6df9735fc",
+      "audit_log": "evidence/axioms/IncompleteNegishi.txt",
+      "audit_log_sha256": "9ff7a6030fa68f6fe55a33da898b95e8d878d3d99ae8f0705c584276c8723cb2",
+      "audited_declarations": [
+        "IncompleteNegishi.planner_foc",
+        "IncompleteNegishi.common_projection",
+        "IncompleteNegishi.planner_supports",
+        "IncompleteNegishi.transfers_sum_zero",
+        "IncompleteNegishi.equilibrium_of_planner",
+        "IncompleteNegishi.planner_unique",
+        "IncompleteNegishi.planner_exists",
+        "IncompleteNegishi.plan_floor",
+        "IncompleteNegishi.planner_continuous",
+        "IncompleteNegishi.small_weight",
+        "IncompleteNegishi.exists_equilibrium_incomplete"
+      ]
+    },
+    "PathUniquenessH2": {
+      "stage": 387,
+      "title": "PATH_UNIQUENESS_H2",
+      "source": "formal/PathUniquenessH2.lean",
+      "source_sha256": "338b57178ab3a8b1368de21ef8a3fdba5fba049e132ce9e3a21969209341bcbc",
+      "audit_log": "evidence/axioms/PathUniquenessH2.txt",
+      "audit_log_sha256": "c65ffa2b40e68e31b0453d02c05265d2697a9f437a9d881d38312fa7d08dcfe3",
+      "audited_declarations": [
+        "PathUniquenessH2.slope_pos",
+        "PathUniquenessH2.curve_deriv",
+        "PathUniquenessH2.curve_exists",
+        "PathUniquenessH2.resid_strictMono",
+        "PathUniquenessH2.eq_facts",
+        "PathUniquenessH2.unique_h2"
+      ]
     }
   },
   "controls": {

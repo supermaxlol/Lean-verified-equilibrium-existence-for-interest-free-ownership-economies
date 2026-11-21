@@ -1,0 +1,7 @@
+'ControlInheritance.coalition_next' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ControlInheritance.coalition_dev' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ControlInheritance.majority_dissolves' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ControlInheritance.majority_gone_at' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ControlInheritance.pro_rata_majority_persists' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ControlInheritance.estate_split' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ControlInheritance.dynasty_converges' depends on axioms: [propext, Classical.choice, Quot.sound]

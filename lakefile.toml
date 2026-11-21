@@ -69,4 +69,12 @@ roots = [
   "MarginLemma", "WeightPkUnique", "WeightPkClosedCap", "GridCompact",
   "ShapeInterest", "OwnershipStability", "DerivedNeutrality", "DebreuAssembly",
   "HeteroCRRADebt", "LipschitzObstruction", "HeterogeneousIssuance",
+  "LongRunOwnership", "RamseyOwnership", "ControlInheritance", "CapacityDistribution",
+  "ShockSharing", "DiminishingWelfare", "OwnershipDynamics", "FiniteHorizonPath",
+  "EndogenousRest", "IncompleteExistence", "RestConvergence", "ThresholdRest",
+  "OLGMoney", "PathUniqueness", "MultiAssetGEI", "ContinuousMantel",
+  "PathUniquenessHetero", "ContinuousRationalisation", "MultiAssetHetero", "WealthSavingContraction",
+  "EndogenousMoney", "PathUniquenessN", "ContinuousUtility", "IncompleteMultiAsset",
+  "MoneyTransition", "IncompleteMarketsExistence", "PathUniquenessGS", "MoneyDynamics",
+  "MoneyCycles", "IncompleteNegishi", "PathUniquenessH2",
 ]

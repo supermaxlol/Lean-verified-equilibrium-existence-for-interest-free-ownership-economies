@@ -1,0 +1,6 @@
+'DiminishingWelfare.pigou_dalton' depends on axioms: [propext, Classical.choice, Quot.sound]
+'DiminishingWelfare.equal_maximises' depends on axioms: [propext, Classical.choice, Quot.sound]
+'DiminishingWelfare.concentrated_worse' depends on axioms: [propext, Classical.choice, Quot.sound]
+'DiminishingWelfare.concentration_limit' depends on axioms: [propext, Classical.choice, Quot.sound]
+'DiminishingWelfare.concentration_eventually_worse' depends on axioms: [propext, Classical.choice, Quot.sound]
+'DiminishingWelfare.floor_welfare' depends on axioms: [propext, Classical.choice, Quot.sound]

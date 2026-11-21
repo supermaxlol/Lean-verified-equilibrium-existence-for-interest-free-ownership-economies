@@ -1,0 +1,8 @@
+'RestConvergence.iterate_rate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RestConvergence.contraction_rest' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RestConvergence.affR_dist' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RestConvergence.affine_rest' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RestConvergence.isClosed_Simp' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RestConvergence.step_common' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RestConvergence.affR_maps' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RestConvergence.common_patience_converges' depends on axioms: [propext, Classical.choice, Quot.sound]

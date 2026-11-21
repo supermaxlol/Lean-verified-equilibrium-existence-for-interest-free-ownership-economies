@@ -1,0 +1,8 @@
+'PathUniquenessGS.ex_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PathUniquenessGS.F_mono' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PathUniquenessGS.savN_mono' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PathUniquenessGS.x_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PathUniquenessGS.date_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PathUniquenessGS.ordered_unique' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PathUniquenessGS.no_higher_path' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PathUniquenessGS.unique_log' depends on axioms: [propext, Classical.choice, Quot.sound]

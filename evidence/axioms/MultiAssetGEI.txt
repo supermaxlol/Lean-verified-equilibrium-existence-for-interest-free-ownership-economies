@@ -1,0 +1,7 @@
+'MultiAssetGEI.concave_lt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MultiAssetGEI.cost_mu' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MultiAssetGEI.euler_sufficient' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MultiAssetGEI.unique_optimum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MultiAssetGEI.euler_necessary' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MultiAssetGEI.state_prices' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MultiAssetGEI.exists_equilibrium_common' depends on axioms: [propext, Classical.choice, Quot.sound]

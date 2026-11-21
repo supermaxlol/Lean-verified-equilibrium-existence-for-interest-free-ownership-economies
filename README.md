@@ -19,9 +19,18 @@ We proved that it can, and a computer checked every step.**
   proportion to what people already own concentrates ownership on the most patient. A household
   shut out of new issues is diluted towards zero. Issuing part of new shares equally to everyone
   gives every household a floor (Stage 356).
+- **Where ownership settles, and what it does.** Any equal part of issuance gives one long-run
+  distribution with a floor under every household, reached from every start; wealth-dependent
+  access can create a poverty trap. Equal ownership maximises welfare from the same output, and
+  with common patience it costs no growth. Ownership shares a loss; debt concentrates it
+  (Stages 357–368, 376).
+- **Time value without interest.** The Ramsey return is paid in full by owning output, and money
+  that pays no interest can be valued (Stages 358, 369, 377).
+- **Incomplete markets.** Equilibrium exists with any number of assets, incomplete markets and
+  different risk attitudes, for one period and one good (Stage 386).
 - **Payouts are exact.** Profit shares and fees are paid in a fixed order, to the last cent.
   No money is lost or created.
-- **Every step is machine-checked.** 196 Lean modules and 2,138 audited results. Each one uses
+- **Every step is machine-checked.** 227 Lean modules and 2,484 audited results. Each one uses
   only the three standard axioms of mathematics (`propext`, `Classical.choice`, `Quot.sound`).
 
 ## Why it matters
@@ -161,7 +170,7 @@ Interest-free finance is one instance. The result is secular and general.
   Price extraction / separating price. Production-economy structure.
   Continuous firm supply over a production set.
   Continuous Mantel surjectivity with Debreu's own weights and genuinely sequential incomplete-market
-  equilibrium remain open; see [the frontier note](docs/GE_FRONTIER_2026-11-06.md) and Stages 250–356 below.
+  equilibrium remain open; see [the frontier note](docs/GE_FRONTIER_2026-11-06.md) and Stages 250–387 below.
 
 The economic and pure executable core is **proved**; the database adapter is
 **tested under explicit storage/runtime assumptions**. Truthful physical evidence,
@@ -169,9 +178,9 @@ authentication, real custody, legal title and demonstrated social outcomes are
 not supplied by these results. See the [connected example](docs/CONNECTED_DEMO.md),
 [implementation contract](runtime/README.md) and [roadmap](docs/ROADMAP.md).
 
-## New in this release: Stages 250–356
+## New in this release: Stages 250–387
 
-106 further modules, 1220 further audited declarations. Each module was
+137 further modules, 1566 further audited declarations. Each module was
 compiled on its own against the pinned Mathlib, and its clean axiom log is retained. Per-stage
 statements and limits are in [`docs/stages/`](docs/stages/).
 
@@ -219,6 +228,27 @@ statements and limits are in [`docs/stages/`](docs/stages/).
   issuance the most patient household's share tends to one (log utility, and CRRA with a common `γ`).
   An excluded household is diluted towards zero unless part of issuance is equal; then every household
   keeps a floor, `σ/N` under common patience. With common patience and full access it is exactly stage 263.
+- **Ownership dynamics, paths, money and incomplete markets (Stages 357–387, new in v2.4).**
+  - *Long run (357, 363, 365, 367, 368, 376).* With an equal part of issuance the long-run distribution is
+    unique, in closed form, with a floor, and every start converges to it geometrically. Continuous
+    wealth-dependent rules (Brouwer) and monotone threshold rules (Knaster–Tarski) always have a rest
+    point, but not always one: explicit examples have two or three, including a poverty trap. An explicit
+    Lipschitz condition gives uniqueness and global convergence.
+  - *Control, growth, welfare, loss (359–362).* Pro rata issuance makes a majority permanent; any equal
+    part dissolves it. With common patience the issuance rule costs no growth. Equal ownership maximises
+    utilitarian welfare from a given output. Ownership splits a loss pro rata; debt puts it on the entrepreneur first.
+  - *Paths (364, 370, 373, 378, 383, 387).* A perfect-foresight path with forward-looking CRRA saving
+    exists at every finite horizon for every `γ > 0` (Brouwer), and at the infinite horizon for `γ ≥ 1`.
+    It is unique at horizon two for every `γ > 0` (387), and under stated conditions at longer horizons.
+  - *Ramsey and money (358, 369, 377, 381, 384, 385).* The Ramsey return `(1 + g)/β` is the return on
+    ownership of output. Fiat money that pays no interest is valued iff the Samuelson condition holds; money
+    growth is a tax on holders; collapsing paths, local instability, and two-cycles for `γ > 2`.
+  - *Incomplete markets (366, 371, 375, 380, 382, 386).* Existence with equity and a bond, with many assets
+    and common CRRA, with complete markets and different CRRA (Negishi), and finally with incomplete markets,
+    any number of assets and different CRRA, for one period and one good (386; classical, now machine-checked).
+  - *Continuous SMD (372, 374, 379).* A continuous Walras excess demand, with no Lipschitz bound, is a sum of
+    `n` trades each uniquely optimal for a continuous, monotone, quasi-concave utility, with endowments (379).
+    Strict monotonicity and strict convexity are not proved.
 - **Sonnenschein–Mantel–Debreu (Stages 262, 287, 292, 296, 300, 302, 306–307, 312, 316, 323–326, 328–349, 353, 355).**
   - Finite price sets: **proved**. Continuous, strictly concave utilities with unique demand, with endowments
     (Stages 296, 300, 326, 329).
@@ -242,15 +272,16 @@ statements and limits are in [`docs/stages/`](docs/stages/).
     `L`-Lipschitz maps is `L`-Lipschitz, and along any approximation of a non-Lipschitz demand the
     stage-353 Afriat scale degenerates (355). This closes that route; it does not show Mantel fails.
 
-**Research frontier.** Continuous Mantel/Debreu for excess demands that are continuous but
-not Lipschitz, with Debreu's own weights. The Lipschitz case is done on the cap (353), and the uniform-
-Lipschitz route to the rest is closed (355); a different construction is needed. It is not a failure of
-revealed preference. See
+**Research frontier.** (1) Multi-period (sequential) incomplete-markets existence: stage 386 is one
+period and one good. (2) Continuous Mantel/Debreu with *strictly* monotone, strictly convex preferences:
+stage 379 gives continuous, monotone, quasi-concave utilities for continuous excess demand, with no Lipschitz
+bound; the uniform-Lipschitz route (355) stays closed. (3) Path uniqueness for `γ > 1` at horizon three or
+more without ordering. See
 [`docs/CONTINUOUS_MANTEL_OBSTRUCTION.md`](docs/CONTINUOUS_MANTEL_OBSTRUCTION.md).
 
 ## What this contribution is
 
-This repository is a **sealed 196-module Lean formalization**, SHA-audited and kept to
+This repository is a **sealed 227-module Lean formalization**, SHA-audited and kept to
 standard foundations. It answers, with machine-checked proof, two questions the
 literature has left open or blurred together:
 
@@ -403,12 +434,13 @@ Stated precisely, so every result can be checked and built on:
 - **Research frontier:** continuous Sonnenschein–Mantel–Debreu *surjectivity* with Debreu's
   own weights on the whole price cap `S_ε`. Finite price sets are proved (Stages
   296–329). The continuum is proved for constant and slowly varying weights (Stages
-  330–335) and in part for the weight `p_k` (Stages 336–349). The remaining input is a
-  uniform bound on Afriat numbers or on grid utilities, not a failure of revealed
-  preference. *Incomplete-market* (GEI) sequential
-  equilibrium also remains open in general; Stage 285 covers only equity and debt. Decreasing-returns production with profit-share
+  330–335) and in part for the weight `p_k` (Stages 336–349); Lipschitz excess demand is
+  proved (353), and continuous excess demand with continuous, weakly monotone, quasi-concave
+  utilities (379). Strictly monotone, strictly convex preferences remain open. *Incomplete-market*
+  (GEI) existence is proved for one period and one good (386); sequential (multi-period)
+  equilibrium remains open. Decreasing-returns production with profit-share
   distribution and a money object are now closed in Stages 232/236/238/248;
-  *monetary* time value beyond the money-object premium needs further modeling.
+  valued interest-free fiat money in an overlapping-generations economy is in Stages 369–385.
 
 ## Verify it yourself
 
@@ -432,7 +464,7 @@ lake build                      # build foundation and extension libraries
 - `GEOverlap.lean` — the full development.
 - `AXIOM_AUDIT.txt` — the axiom audit (every theorem: `[propext, Classical.choice, Quot.sound]`).
 - `SEAL_GND.json` — historical foundations snapshot, not the latest gap ledger.
-- `formal/` — accepted productive-ownership extension sources (Stages 183–249 and 250–356).
+- `formal/` — accepted productive-ownership extension sources (Stages 183–249 and 250–387).
 - `docs/stages/` — statement and limits of each stage from 250 on.
 - `evidence/verification-manifest.json` — portable module/stage/hash inventory.
 - `evidence/axioms/` — clean retained extension compiler/axiom logs.

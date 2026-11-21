@@ -1,7 +1,7 @@
 cff-version: 1.2.0
 message: "If you use this work, please cite it as below."
 title: "Lean-verified equilibrium existence for interest-free ownership economies"
-abstract: "A machine-checked (Lean 4 / Mathlib) proof that an economy can run on ownership instead of interest: competitive equilibrium exists with no interest rate, time value comes from patience, and profit-share settlement is exact. 196 modules, 2138 audited results."
+abstract: "A machine-checked (Lean 4 / Mathlib) proof that an economy can run on ownership instead of interest: competitive equilibrium exists with no interest rate, time value comes from patience, and profit-share settlement is exact. 227 modules, 2484 audited results."
 type: software
 authors:
   - family-names: Ahmed
@@ -10,8 +10,8 @@ authors:
 doi: 10.5281/zenodo.23836096
 repository-code: "https://github.com/supermaxlol/Lean-verified-equilibrium-existence-for-interest-free-ownership-economies"
 license: MIT
-version: "2.3"
-date-released: 2026-11-19
+version: "2.4"
+date-released: 2026-11-20
 keywords:
   - Lean 4
   - formal verification

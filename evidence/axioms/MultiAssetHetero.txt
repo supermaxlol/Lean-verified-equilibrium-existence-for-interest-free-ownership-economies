@@ -1,0 +1,7 @@
+'MultiAssetHetero.F_lt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MultiAssetHetero.root_exists' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MultiAssetHetero.mu_continuous' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MultiAssetHetero.walras' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MultiAssetHetero.exists_weights' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MultiAssetHetero.exists_ad_equilibrium' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MultiAssetHetero.exists_equilibrium_complete' depends on axioms: [propext, Classical.choice, Quot.sound]

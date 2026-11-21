@@ -1,0 +1,7 @@
+'ShockSharing.equity_conserves' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ShockSharing.debt_conserves' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ShockSharing.equity_proportional' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ShockSharing.debt_shifts_to_entrepreneur' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ShockSharing.small_loss_all_on_entrepreneur' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ShockSharing.debt_wipeout' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ShockSharing.equity_survives' depends on axioms: [propext, Classical.choice, Quot.sound]

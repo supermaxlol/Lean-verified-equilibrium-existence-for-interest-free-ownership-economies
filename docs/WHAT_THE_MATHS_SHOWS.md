@@ -149,6 +149,68 @@ saving rate and the same access to new units. Stage 356 drops all three.
 So the issuance rule decides whether ownership concentrates, and differences in patience and
 access are what drive the concentration.
 
+## 12. Where ownership settles in the long run (Stages 357, 359, 363, 365, 367, 368, 376)
+
+- With any positive equal part of issuance there is exactly one long-run distribution, in closed
+  form, and every household holds at least a fixed floor in it (357). From every starting point the
+  economy converges to it geometrically (363); with common patience the limit is equal ownership (367).
+- When patience or access depends on wealth, a long-run distribution still exists for every
+  continuous rule (365) and for threshold rules (368). But it need not be unique: explicit economies
+  have two or three rest points, one of them a **poverty trap** in which a household stays below the
+  access threshold for ever, although equal shares are also a rest point (368).
+- An explicit condition rules this out: if saving rates vary little with wealth relative to the
+  lowest saving rate, and enough of issuance is equal, the rest point is unique and reached from
+  everywhere (376).
+- **Control.** Voting weight follows ownership. Under pro rata issuance a majority, once held, is
+  held for ever; any positive equal part dissolves every minority majority in finite time (359).
+
+## 13. Growth and welfare (Stages 360, 362)
+
+- With common patience the issuance rule costs no growth at all. With different patience, spreading
+  ownership costs at most half the spread of patience times the share moved (360).
+- With diminishing marginal utility, equal ownership gives the most welfare from a given output, and
+  full concentration is strictly worse (362). Output is held fixed, so this is about distribution, not growth.
+
+## 14. Equilibrium paths through time (Stages 364, 370, 373, 378, 383, 387)
+
+- With forward-looking CRRA saving, an equilibrium path exists at every finite horizon for every
+  curvature `γ > 0`, and at the infinite horizon for `γ ≥ 1` (for `γ < 1` under an explicit condition) (364).
+- The path is unique for log utility, for common patience, at horizon one (370); at horizon two for every
+  `γ > 0` (387); at every finite horizon under a band on `γ` (378); and at every finite horizon for
+  `γ ≤ 1` between ordered paths (383).
+
+## 15. Interest, money and loss (Stages 358, 361, 369, 377, 381, 384, 385)
+
+- **The Ramsey return is paid by ownership.** The Euler condition says waiting must earn
+  `(1 + g)/β` (log utility). Ownership of output pays exactly that, with no loan; a common change in
+  prices leaves it unchanged, while a nominal claim loses it to inflation (358).
+- **Losses.** With the same resources and the same loss, ownership splits the loss in proportion to what
+  each party put in; debt puts it on the entrepreneur first and protects the creditor until the
+  entrepreneur is wiped out (361).
+- **Money that pays no interest can have value.** In an overlapping-generations economy, fiat money is
+  valued exactly when the young would like to save at the growth rate (the Samuelson condition), and it
+  makes every generation better off than autarky (369). Its return is the growth rate, not interest.
+- Growing the money stock taxes money holders; a constant stock is the best steady state (377). For
+  `γ ≤ 1` every non-stationary path collapses to zero with rising inflation (381, 384); for `γ > 2`
+  two-period cycles exist under an explicit slope condition (385).
+
+## 16. Many assets and incomplete markets (Stages 366, 371, 375, 380, 382, 386)
+
+- An equity-and-bond economy with different risk attitudes has an equilibrium, and the bond is traded in
+  it (366, with 354). With many assets, equilibrium exists for a common CRRA coefficient (371) and for
+  different coefficients when markets are complete (375).
+- With incomplete markets each household's optimum exists and is unique at every arbitrage-free price
+  (380), demand is continuous (382), and equilibrium exists with any number of assets and different
+  risk attitudes, for one period and one good (386). This last result is classical; it is now machine-checked.
+
+## 17. Continuous excess demand (Stages 372, 374, 379)
+
+- A continuous Walras excess demand, with no Lipschitz bound, splits into `n` consumers whose trades
+  satisfy the weak and strong axioms (372), and each is the unique best choice of a **continuous**,
+  monotone, quasi-concave utility, with endowments and non-negative consumption (379).
+- What is still missing relative to the textbook theorem is strictness: preferences here are weakly
+  monotone and convex, not strictly.
+
 ## Synthesis
 
 1. Interest is not needed for markets to work: equilibrium, time value, efficiency and
@@ -163,14 +225,26 @@ access are what drive the concentration.
    a formula.
 6. Under automation, the decisive variable is how new ownership is issued: with different
    patience or access, pro rata issuance concentrates ownership, and an equal part keeps a floor
-   under every household (Stage 356).
+   under every household (Stage 356). Any positive equal part gives a unique long-run
+   distribution with a floor; wealth-dependent access can create a poverty trap (357, 368).
+7. Time value is a return on ownership: the Ramsey return is paid by owning output, and
+   interest-free money can be valued (358, 369).
+8. With the same resources, ownership shares a loss; debt concentrates it (361).
+9. With diminishing marginal utility, spreading ownership raises welfare from the same output,
+   and with common patience it costs no growth (360, 362).
 
 ## Where mathematics stops, and what comes next
 
 Empirical magnitudes, institutional adoption and Shariah rulings are questions for markets,
 regulators and scholars; no proof settles them, and these results give each of them a proved
-foundation to work from. Inside mathematics, the research frontier is continuous Mantel for
-excess demands that are continuous but not Lipschitz: the Lipschitz case is proved (353) and the
-uniform-Lipschitz route is shown closed (355). Some stages work in the classic textbook settings
+foundation to work from. Inside mathematics, the open problems are:
+
+- **Multi-period (sequential) incomplete markets.** Stage 386 is one period and one good; existence
+  with dates, which is the setting of real ownership economies, is the most important next step.
+- **Strictness in continuous Mantel.** Stage 379 gives continuous, monotone, quasi-concave utilities
+  for continuous excess demand; strictly monotone, strictly convex preferences remain open.
+- **Path uniqueness for `γ > 1`** at horizon three or more, without ordering (387 settles horizon two).
+
+Some stages work in the classic textbook settings
 (Cobb–Douglas preferences in Stages 250–252 and 351, one date in Stages 271 and 354), and each
 stage's exact hypotheses are stated in its own file.
